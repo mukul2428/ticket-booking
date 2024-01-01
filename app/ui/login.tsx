@@ -1,5 +1,5 @@
-import googleIcon from "../../assets/images/google-icon.png";
-import facebookIcon from "../../assets/images/facebook-icon.png";
+'use client';
+
 import { useState } from "react";
 const Login = () => {
   const [isModalVisible, setIsModalVisible] = useState(true);
@@ -42,10 +42,10 @@ const Login = () => {
             </div>
             <div className="flex flex-row">
               <button className="w-full mx-1 mt-4 border border-gray-400 hover:bg-gray-400 hover:text-white text-black text-sm font-bold py-2 px-4 rounded-lg flex justify-center items-center">
-                <img className="mx-1" src={facebookIcon}></img>Facebook
+                <img className="mx-1" src="/facebook.png"></img>Facebook
               </button>
               <button className="w-full mx-1 mt-4 border border-gray-400 hover:bg-gray-400 hover:text-white text-black text-sm font-bold py-2 px-4 rounded-lg flex justify-center items-center">
-                <img className="mx-1" src={googleIcon}></img>Google
+                <img className="mx-1" src="/google.png"></img>Google
               </button>
             </div>
           </div>

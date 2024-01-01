@@ -1,10 +1,9 @@
-import siteLogo from "../../assets/images/siteLogo.png";
 const Header = () => {
   return (
     <nav className="border-gray-200 dark:bg-gray-900 absolute">
       <div className="flex items-center justify-between gap-72 p-4">
         <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={siteLogo} className="h-8" alt="Logo" />
+          <img src="/siteLogo.png" className="h-8" alt="Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
             E V E N T
           </span>
