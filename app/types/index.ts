@@ -4,3 +4,9 @@ export type loginInputs = {
   password: string;
   rememberMe: string;
 };
+export type userState = {
+  loggedIn: boolean;
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}

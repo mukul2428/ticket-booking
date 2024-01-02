@@ -1,9 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginInputs, userLogged } from "../types";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../state/store";
+import { login } from "../state/userData/userDataSlice";
+
 const Login = () => {
+  const userData = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+
   const [isModalVisible, setIsModalVisible] = useState<userLogged>(true);
 
   const {
@@ -15,13 +22,24 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<loginInputs> = (data) => {
     console.log(data);
+    dispatch(
+      login({
+        email: data.email,
+        password: data.password,
+        rememberMe: data.rememberMe,
+      })
+    );
     setIsModalVisible(false);
   };
 
-  console.log(watch("email"));
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
+
+  // console.log(watch("email"));
 
   if (!isModalVisible) return;
-  return (
+  return !userData.loggedIn ? (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex-center">
         <div className="w-[400px]">
@@ -30,18 +48,33 @@ const Login = () => {
             <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
               <label className="text-sm font-bold mt-2">Email</label>
               <input
-                {...register("email", { required: true })}
+                {...register("email", {
+                  required: true,
+                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                })}
                 className="login-input"
                 placeholder="Your email address"
                 type="text"
               />
+              {errors.email && (
+                <span className="text-xs text-red-500">
+                  Email ID is required
+                </span>
+              )}
               <label className="text-sm font-bold mt-4">Password</label>
               <input
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: true,
+                })}
                 className="login-input"
                 placeholder="Your Password"
                 type="password"
               />
+              {errors.password && (
+                <span className="text-xs text-red-500">
+                  Password is required
+                </span>
+              )}
               <div className="flex flex-row mt-4">
                 <input type="checkbox" {...register("rememberMe")} />
                 <label className="text-sm mx-2 text-gray-400">
@@ -72,6 +105,8 @@ const Login = () => {
         </div>
       </div>
     </>
+  ) : (
+    <></>
   );
 };
 
