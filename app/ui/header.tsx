@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <nav className="border-gray-200 dark:bg-gray-900 absolute">
+    <nav className="absolute">
       <div className="flex items-center justify-between gap-72 p-4">
         <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="/siteLogo.png" className="h-8" alt="Logo" />
@@ -8,7 +8,7 @@ const Header = () => {
             E V E N T
           </span>
         </a>
-        <div className="items-center fle" id="navbar-cta">
+        <div className="items-center flex" id="navbar-cta">
           <ul className="flex flex-row font-medium p-4 ">
             <li>
               <a
