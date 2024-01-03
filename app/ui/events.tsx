@@ -1,7 +1,7 @@
 import Cards from "./cards";
 
-const Events = ({imageType}: any) => {
-  return <Cards imageType={imageType} />;
+const Events = () => {
+  return <Cards />;
 };
 
 export default Events;

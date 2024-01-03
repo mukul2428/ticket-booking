@@ -9,4 +9,14 @@ export type userState = {
   email: string;
   password: string;
   rememberMe: boolean;
-}
+};
+export type eventsData = {
+  id: number;
+  imageType: string;
+  eventName: string;
+  eventLocation: string;
+  eventTime: string;
+  eventDay: string;
+  eventTickets: string;
+  eventPrice: string;
+};

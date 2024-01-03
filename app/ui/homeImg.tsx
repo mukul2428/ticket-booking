@@ -4,13 +4,41 @@ import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import Events from "./events";
 import { useState } from "react";
+import { EventContext } from "../hooks/context";
 
 const HomeImg = () => {
   const userData = useSelector((state: RootState) => state.user);
-  const [noOfEvents, setnoOfEvents] = useState([
-    "football",
-    "basketball",
-    "basketball",
+  const [eventsData, seteventsData] = useState([
+    {
+      id: 0,
+      imageType: "football.jpg",
+      eventName: "football",
+      eventLocation: "Mumbai",
+      eventTime: "3PM",
+      eventDay: "12 January",
+      eventTickets: "23",
+      eventPrice: "$2323",
+    },
+    {
+      id: 1,
+      imageType: "football.jpg",
+      eventName: "basketball",
+      eventLocation: "Chennai",
+      eventTime: "8PM",
+      eventDay: "12 December",
+      eventTickets: "23",
+      eventPrice: "$2323",
+    },
+    {
+      id: 2,
+      imageType: "football.jpg",
+      eventName: "concert",
+      eventLocation: "Gurugram",
+      eventTime: "3PM",
+      eventDay: "12 January",
+      eventTickets: "23",
+      eventPrice: "$2323",
+    },
   ]);
   return (
     <>
@@ -52,9 +80,9 @@ const HomeImg = () => {
             </div>
           </div>
           <div className="flex flex-row my-6 justify-center">
-            <div className="font-bold text-3xl">Upcoming</div>
-            <div className=" mx-4 font-extrabold text-3xl text-orange-600">
-              Events
+            <div className="text-3xl">
+              <span className="font-bold">Upcoming</span>&nbsp;
+              <span className="font-extrabold text-orange-600">Events</span>
             </div>
           </div>
           <div className="flex flex-row justify-center">
@@ -77,8 +105,12 @@ const HomeImg = () => {
             <hr className="h-px my-4 bg-gray-300 border-0 w-24"></hr>
           </div>
           <div className="flex justify-around my-6 py-4 mx-8">
-            {noOfEvents.map((event) => {
-              return <Events className="m-4" imageType={event + ".jpg"} />;
+            {eventsData.map((event) => {
+              return (
+                <EventContext.Provider value={event}>
+                  <Events key={event.id}/>
+                </EventContext.Provider>
+              );
             })}
           </div>
         </>
