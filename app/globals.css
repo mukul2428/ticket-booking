@@ -5,7 +5,7 @@
 .flex-center {
   @apply flex justify-center items-center;
 }
-.login-input {
+.common-input {
   @apply mt-1 w-auto border-2 border-gray-300 rounded-lg h-10 p-4;
 }
 .login-icons {
@@ -16,4 +16,7 @@
     box-shadow: 7px 7px 33px 0 rgba(0, 0, 0, 0.25),
       -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
   }
+}
+.range::-webkit-slider-thumb {
+  background: #fd7200;
 }

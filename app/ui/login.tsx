@@ -49,7 +49,7 @@ const Login = () => {
                   required: true,
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
-                className="login-input"
+                className="common-input"
                 placeholder="Your email address"
                 type="text"
               />
@@ -63,7 +63,7 @@ const Login = () => {
                 {...register("password", {
                   required: true,
                 })}
-                className="login-input"
+                className="common-input"
                 placeholder="Your Password"
                 type="password"
               />
