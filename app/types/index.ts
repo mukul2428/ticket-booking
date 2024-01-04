@@ -1,4 +1,5 @@
 export type userLogged = boolean;
+export type loginClicked = boolean;
 export type loginInputs = {
   email: string;
   password: string;

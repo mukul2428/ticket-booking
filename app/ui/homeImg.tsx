@@ -1,13 +1,12 @@
 "use client";
-
-import { useSelector } from "react-redux";
-import { RootState } from "../state/store";
 import Events from "./events";
 import { useState } from "react";
 import { EventContext } from "../hooks/context";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 const HomeImg = () => {
-  const userData = useSelector((state: RootState) => state.user);
+  const loginClicked = useSelector((state: RootState) => state.loginClicked);
   const [eventsData, seteventsData] = useState([
     {
       id: 0,
@@ -49,7 +48,7 @@ const HomeImg = () => {
           alt="Home Page Image"
         />
       </div>
-      {userData.loggedIn ? (
+      {!loginClicked ? (
         <>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="font-poppins-bold text-white font-helvetica text-4xl font-bold ">
@@ -218,9 +217,7 @@ const HomeImg = () => {
             </button>
           </div>
         </>
-      ) : (
-        <></>
-      )}
+      ) : <></>}
     </>
   );
 };

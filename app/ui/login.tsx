@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { loginInputs, userLogged } from "../types";
+import { useEffect } from "react";
+import { loginInputs } from "../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { login } from "../state/userData/userDataSlice";
+import { loginNotClick } from "../state/userData/loginClickedSlice";
 
 const Login = () => {
   const userData = useSelector((state: RootState) => state.user);
+  const loginClicked = useSelector((state: RootState) => state.loginClicked);
   const dispatch = useDispatch();
-
-  const [isModalVisible, setIsModalVisible] = useState<userLogged>(true);
 
   const {
     register,
@@ -29,17 +29,14 @@ const Login = () => {
         rememberMe: data.rememberMe,
       })
     );
-    setIsModalVisible(false);
+    dispatch(loginNotClick());
   };
 
   useEffect(() => {
     console.log(userData);
   }, [userData]);
 
-  // console.log(watch("email"));
-
-  if (!isModalVisible) return;
-  return !userData.loggedIn ? (
+  return loginClicked ? (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex-center">
         <div className="w-[400px]">
