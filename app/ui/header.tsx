@@ -8,12 +8,13 @@ import { store } from "../state/store";
 
 const Header = () => {
   const links = [
-    { name: "LogIn", href: "" },
+    { id: 1, name: "LogIn", href: "" },
     {
+      id: 2,
       name: "Help",
       href: "",
     },
-    { name: "Sell Tickets", href: "/sell-tickets" },
+    { id: 3, name: "Sell Tickets", href: "/sell-tickets" },
   ];
   const eventNames = [
     { name: "Football", href: "" },
@@ -73,7 +74,7 @@ const Header = () => {
         </div>
         <div className="flex gap-5">
           {links.map((link) => (
-            <Provider store={store}>
+            <Provider store={store} key={link.id}>
               <Link key={link.name} href={link.href}>
                 {link.name === "LogIn" ? (
                   <button

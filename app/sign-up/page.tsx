@@ -1,9 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { RootState } from "../state/store";
-import { loginClick } from "../state/userData/loginClickedSlice";
-import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 
 const SignUp = () => {
