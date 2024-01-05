@@ -14,10 +14,10 @@ const Cards = () => {
 
         <div className="p-5">
           <span className="p-2 rounded-md text-white bg-orange-600">
-            {eventsData.eventName}
+            {eventsData.eventCategory}
           </span>
           <h5 className="dark:text-black mb-2 text-2xl font-bold tracking-tight text-gray-900">
-            Event Name
+            {eventsData.eventName}
           </h5>
 
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">

@@ -7,7 +7,9 @@ import { RootState } from "../state/store";
 
 const HomeImg = () => {
   const loginClicked = useSelector((state: RootState) => state.loginClicked);
-  const [eventsData, seteventsData] = useState([
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const cardsPerPage = 3;
+  const eventsData = [
     {
       id: 0,
       imageType: "football.jpg",
@@ -41,7 +43,67 @@ const HomeImg = () => {
       eventPrice: "$2323",
       eventCategory: "Football",
     },
-  ]);
+    {
+      id: 4,
+      imageType: "football.jpg",
+      eventName: "concert",
+      eventLocation: "Gurugram",
+      eventTime: "3PM",
+      eventDay: "12 January",
+      eventTickets: "23",
+      eventPrice: "$2323",
+      eventCategory: "Football",
+    },
+    {
+      id: 5,
+      imageType: "football.jpg",
+      eventName: "WWE",
+      eventLocation: "Gurugram",
+      eventTime: "3PM",
+      eventDay: "12 January",
+      eventTickets: "23",
+      eventPrice: "$2323",
+      eventCategory: "Sports",
+    },
+    {
+      id: 6,
+      imageType: "football.jpg",
+      eventName: "game",
+      eventLocation: "Gurugram",
+      eventTime: "3PM",
+      eventDay: "12 January",
+      eventTickets: "23",
+      eventPrice: "$2323",
+      eventCategory: "Football",
+    },
+    {
+      id: 7,
+      imageType: "football.jpg",
+      eventName: "Arena",
+      eventLocation: "Gurugram",
+      eventTime: "3PM",
+      eventDay: "12 January",
+      eventTickets: "23",
+      eventPrice: "$2323",
+      eventCategory: "Concert",
+    },
+  ];
+  const displayEvents = eventsData.slice(
+    currentIndex,
+    currentIndex + cardsPerPage
+  );
+  const handleNext = () => {
+    const lastIndex = eventsData.length - 1;
+    const nextIndex = (currentIndex + cardsPerPage) % (lastIndex + 1);
+    setCurrentIndex(nextIndex);
+  };
+
+  const handlePrev = () => {
+    const lastIndex = eventsData.length - 1;
+    const prevIndex =
+      (currentIndex - cardsPerPage + lastIndex + 1) % (lastIndex + 1);
+    setCurrentIndex(prevIndex);
+  };
   return (
     <>
       <div className="">
@@ -107,7 +169,7 @@ const HomeImg = () => {
             <hr className="h-px my-4 bg-gray-300 border-0 w-24"></hr>
           </div>
           <div className="flex justify-around my-6 py-4 mx-8">
-            {eventsData.map((event) => {
+            {displayEvents.map((event) => {
               return (
                 <EventContext.Provider value={event} key={event.id}>
                   <Events key={event.id} />
@@ -116,7 +178,10 @@ const HomeImg = () => {
             })}
           </div>
           <div className="flex flex-row justify-center">
-            <button className="m-4 p-4 border-2 border-orange-600 rounded-lg">
+            <button
+              className="m-4 p-4 border-2 border-orange-600 rounded-lg"
+              onClick={handlePrev}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
@@ -133,7 +198,10 @@ const HomeImg = () => {
             <button className="text-sm m-4 p-4 border-2 border-orange-600 rounded-lg">
               View More Events
             </button>
-            <button className="m-4 p-4 border-2 border-orange-600 rounded-lg">
+            <button
+              className="m-4 p-4 border-2 border-orange-600 rounded-lg"
+              onClick={handleNext}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
