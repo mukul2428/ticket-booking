@@ -29,7 +29,7 @@ const Header = () => {
       const scrolled = window.scrollY;
       // Set the condition based on your scroll position
       setIsAtTop(scrolled === 0);
-    }, 100); // Adjust the debounce delay as needed (in milliseconds)
+    }, 500); // Adjust the debounce delay as needed (in milliseconds)
     // Attach the debounced scroll event listener
     window.addEventListener("scroll", handleScroll);
 
@@ -42,7 +42,7 @@ const Header = () => {
   return (
     <nav className={`sticky top-0 z-50 ${isAtTop ? "bg-black" : "bg-white"}`}>
       <div className="flex items-center justify-between p-4">
-        <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="/siteLogo.png" className="h-8" alt="Logo" />
           <span
             className={`self-center text-2xl font-semibold whitespace-nowrap ${
@@ -51,7 +51,7 @@ const Header = () => {
           >
             E V E N T
           </span>
-        </a>
+        </Link>
         <div className="items-center flex" id="navbar-cta">
           <ul className="flex gap-4 flex-row font-medium p-4 ">
             {eventNames.map((link) => (

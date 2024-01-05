@@ -1,6 +1,11 @@
+"use client";
 import { useState } from "react";
 
-const Tickrectangle = () => {
+type rectangleProps = {
+  category: string;
+};
+
+const TickRectangle: React.FC<rectangleProps> = ({ category }) => {
   const [isIconVisible, setIconVisibility] = useState(false);
   const [isBorderHighlighted, setBorderHighlight] = useState(false);
 
@@ -35,10 +40,10 @@ const Tickrectangle = () => {
         </div>
       )}
       <div className="text-center">
-        <p>Your text goes here</p>
+        <p>{category}</p>
       </div>
     </div>
   );
 };
 
-export default Tickrectangle;
+export default TickRectangle;

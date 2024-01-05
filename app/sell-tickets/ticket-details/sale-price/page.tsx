@@ -1,13 +1,15 @@
-import { useState } from "react";
-import Myads from "./myads";
-const Saleprice = () => {
-  const [isMyAds, setMyAds] = useState(false);
+"use client";
+
+import { useRouter } from "next/navigation";
+
+const SalePrice = () => {
+  const router = useRouter();
   const handleContinue = () => {
-    setMyAds(!isMyAds);
+    router.push("/sell-tickets/ticket-details/sale-price/my-ads", { scroll: false });
   };
   return (
     <>
-      {!isMyAds && (
+      {
         <div className="flex flex-col p-10 m-10 w-3/5">
           <div className="flex flex-row">
             <span className="text-3xl font-bold">Sale</span>
@@ -32,10 +34,9 @@ const Saleprice = () => {
             Continue
           </button>
         </div>
-      )}
-      {isMyAds && <Myads />}
+      }
     </>
   );
 };
 
-export default Saleprice;
+export default SalePrice;

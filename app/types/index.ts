@@ -6,6 +6,22 @@ export type loginInputs = {
   password: string;
   rememberMe: string;
 };
+export type eventDataInputs = {
+  eventName: string;
+  eventLocation: string;
+  eventDate: string;
+  eventTime: string;
+  selectedCategory: string;
+}
+export type ticketDataInputs = {
+  noOfTickets: number;
+  ticketFormat: string;
+  ticketLocation: string;
+  ticketQueue: string;
+  restrictions: string[];
+  advantages: string[];
+  readyTicket: boolean;
+}
 export type userState = {
   loggedIn: boolean;
   email: string;

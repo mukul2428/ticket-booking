@@ -1,5 +1,6 @@
+"use client"
+import { EventContext } from "@/app/hooks/context";
 import { useContext } from "react";
-import { EventContext } from "../hooks/context";
 const Myads = () => {
   const eventContext = useContext(EventContext);
   console.log(eventContext);
