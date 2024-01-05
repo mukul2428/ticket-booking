@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction} from 'react';
 export type userLogged = boolean;
 export type loginClicked = boolean;
 export type loginInputs = {

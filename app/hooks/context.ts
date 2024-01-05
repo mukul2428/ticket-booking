@@ -9,5 +9,5 @@ export const EventContext = createContext<eventsData>({
     eventTime: "",
     eventDay: "",
     eventTickets: "",
-    eventPrice: ""
+    eventPrice: "",
 });

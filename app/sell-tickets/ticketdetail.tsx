@@ -140,7 +140,7 @@ const Ticketdetail = () => {
               id="basketball"
             ></input>
             <label htmlFor="basketball">
-              No, I don't have the tickets yet / I can't send it yet.
+              No, I don&apos;t have the tickets yet / I can&apos;t send it yet.
             </label>
           </div>
           <button

@@ -106,7 +106,7 @@ const HomeImg = () => {
           <div className="flex justify-around my-6 py-4 mx-8">
             {eventsData.map((event) => {
               return (
-                <EventContext.Provider value={event}>
+                <EventContext.Provider value={event} key={event.id}>
                   <Events key={event.id} />
                 </EventContext.Provider>
               );
@@ -177,7 +177,7 @@ const HomeImg = () => {
           <div className="flex justify-around my-6 py-4 mx-8">
             {eventsData.map((event) => {
               return (
-                <EventContext.Provider value={event}>
+                <EventContext.Provider value={event} key={event.id}>
                   <Events key={event.id} />
                 </EventContext.Provider>
               );
@@ -217,7 +217,9 @@ const HomeImg = () => {
             </button>
           </div>
         </>
-      ) : <></>}
+      ) : (
+        <></>
+      )}
     </>
   );
 };
