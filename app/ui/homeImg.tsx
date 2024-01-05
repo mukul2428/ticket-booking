@@ -4,6 +4,7 @@ import { useState } from "react";
 import { EventContext } from "../hooks/context";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
+import Link from "next/link";
 
 const HomeImg = () => {
   const loginClicked = useSelector((state: RootState) => state.loginClicked);
