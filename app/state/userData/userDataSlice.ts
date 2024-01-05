@@ -5,14 +5,14 @@ const initialState: userState = {
   loggedIn: false,
   email: "",
   password: "",
-  rememberMe: false
+  rememberMe: ""
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<any>) => {
+    login: (state, action: PayloadAction<userState>) => {
       state.loggedIn = true;
       state.email = action.payload.email;
       state.password = action.payload.password;

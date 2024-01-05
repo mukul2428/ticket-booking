@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import _debounce from "lodash/debounce";
-import { useDispatch } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { loginClick } from "../state/userData/loginClickedSlice";
+import { store } from "../state/store";
 
 const Header = () => {
   const links = [
@@ -42,7 +43,10 @@ const Header = () => {
   return (
     <nav className={`sticky top-0 z-50 ${isAtTop ? "bg-black" : "bg-white"}`}>
       <div className="flex items-center justify-between p-4">
-        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link
+          href="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
           <img src="/siteLogo.png" className="h-8" alt="Logo" />
           <span
             className={`self-center text-2xl font-semibold whitespace-nowrap ${
@@ -69,34 +73,36 @@ const Header = () => {
         </div>
         <div className="flex gap-5">
           {links.map((link) => (
-            <Link key={link.name} href={link.href}>
-              {link.name === "LogIn" ? (
-                <button
-                  type="button"
-                  onClick={() => {
-                    dispatch(loginClick());
-                  }}
-                  className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
-                    isAtTop
-                      ? "text-white bg-black hover:bg-white hover:text-black border border-white "
-                      : "text-black bg-white hover:bg-black hover:text-white border border-black"
-                  }`}
-                >
-                  {link.name}
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
-                    isAtTop
-                      ? "text-white bg-black hover:bg-white hover:text-black border border-white "
-                      : "text-black bg-white hover:bg-black hover:text-white border border-black"
-                  }`}
-                >
-                  {link.name}
-                </button>
-              )}
-            </Link>
+            <Provider store={store}>
+              <Link key={link.name} href={link.href}>
+                {link.name === "LogIn" ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(loginClick());
+                    }}
+                    className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
+                      isAtTop
+                        ? "text-white bg-black hover:bg-white hover:text-black border border-white "
+                        : "text-black bg-white hover:bg-black hover:text-white border border-black"
+                    }`}
+                  >
+                    {link.name}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
+                      isAtTop
+                        ? "text-white bg-black hover:bg-white hover:text-black border border-white "
+                        : "text-black bg-white hover:bg-black hover:text-white border border-black"
+                    }`}
+                  >
+                    {link.name}
+                  </button>
+                )}
+              </Link>
+            </Provider>
           ))}
         </div>
       </div>

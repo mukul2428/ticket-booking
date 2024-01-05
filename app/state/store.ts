@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginClickedSlice from "./userData/loginClickedSlice";
 import userDataSlice from "./userData/userDataSlice";
+import sellTicketsSlice from "./userData/sellTicketsSlice";
 export const store = configureStore({
     reducer: {
         // we have userReducer slice here
         // we can have many slices here
         user: userDataSlice,
-        loginClicked: loginClickedSlice
+        loginClicked: loginClickedSlice,
+        sellTickets: sellTicketsSlice
     },
 })
 export type RootState = ReturnType<typeof store.getState>;
