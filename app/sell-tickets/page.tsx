@@ -1,9 +1,9 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import { EventContext } from "../hooks/context";
 import { eventDataInputs } from "../types";
+import { useDispatch } from "react-redux";
+import { setEventData } from "../state/userData/sellTicketsSlice";
 
 const SellTickets = () => {
   const {
@@ -12,18 +12,22 @@ const SellTickets = () => {
     watch,
     formState: { errors },
   } = useForm<eventDataInputs>();
-  const eventContext = useContext(EventContext);
+
+  const dispatch = useDispatch();
 
   const router = useRouter();
 
   const onSubmit: SubmitHandler<eventDataInputs> = (data) => {
-    eventContext.id = 4;
-    eventContext.imageType = "/";
-    eventContext.eventName = data.eventName;
-    eventContext.eventLocation = data.eventLocation;
-    eventContext.eventTime = `${data.eventDate} ${data.eventTime}`;
-    eventContext.eventDay = data.eventDate;
-    eventContext.eventCategory = data.selectedCategory;
+    dispatch(
+      setEventData({
+        eventImage: data.eventImage,
+        eventName: data.eventName,
+        eventLocation: data.eventLocation,
+        eventDate: data.eventDate,
+        eventTime: data.eventTime,
+        eventCategory: data.eventCategory,
+      })
+    );
     router.push("/sell-tickets/ticket-details", { scroll: false });
   };
 
@@ -108,7 +112,7 @@ const SellTickets = () => {
               className="mx-1 mt-3 accent-orange-600"
               type="radio"
               id={category}
-              {...register("selectedCategory", {
+              {...register("eventCategory", {
                 required: true,
               })}
             />
@@ -116,7 +120,7 @@ const SellTickets = () => {
           </div>
         ))}
       </div>
-      {errors.selectedCategory && (
+      {errors.eventCategory && (
         <span className="text-xs text-red-500">Event Category is required</span>
       )}
 

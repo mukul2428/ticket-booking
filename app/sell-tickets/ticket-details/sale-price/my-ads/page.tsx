@@ -1,9 +1,9 @@
-"use client"
-import { EventContext } from "@/app/hooks/context";
-import { useContext } from "react";
+"use client";
+import { RootState } from "@/app/state/store";
+import { useSelector } from "react-redux";
 const Myads = () => {
-  const eventContext = useContext(EventContext);
-  console.log(eventContext);
+  const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
+  console.log(sellTicketsData);
   return (
     <>
       <div className="flex flex-col p-10 m-10 w-3/5">
@@ -20,16 +20,16 @@ const Myads = () => {
             ></img>
             <div className="m-2 p-4 flex flex-col">
               <div className="m-1 p-1 font-bold text-xl">
-                {eventContext.eventName}
+                {sellTicketsData.eventsData.eventName}
               </div>
               <div className="m-1 p-1 font-semibold">
-                {eventContext.eventCategory}
+                {sellTicketsData.eventsData.eventCategory}
               </div>
               <div className="m-1 p-1 font-semibold">
-                {eventContext.eventTime}
+                {sellTicketsData.eventsData.eventTime}
               </div>
               <div className="m-1 p-1 font-semibold">
-                {eventContext.eventLocation}
+                {sellTicketsData.eventsData.eventLocation}
               </div>
             </div>
           </div>

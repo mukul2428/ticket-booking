@@ -24,6 +24,7 @@ const Login = () => {
     console.log(data);
     dispatch(
       login({
+        loggedIn: true,
         email: data.email,
         password: data.password,
         rememberMe: data.rememberMe,
