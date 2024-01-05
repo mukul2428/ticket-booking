@@ -21,4 +21,5 @@ export type eventsData = {
   eventDay: string;
   eventTickets: string;
   eventPrice: string;
+  eventCategory: string;
 };

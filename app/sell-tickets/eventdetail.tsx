@@ -22,6 +22,7 @@ const EventDetail = () => {
     eventContext.eventLocation = eventLocation;
     eventContext.eventTime = `${eventDate} ${eventTime}`;
     eventContext.eventDay = eventDate;
+    eventContext.eventCategory = selectedCategory;
     setTicketDetail(!isTicketDetail);
   };
   return (

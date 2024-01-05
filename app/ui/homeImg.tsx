@@ -17,6 +17,7 @@ const HomeImg = () => {
       eventDay: "12 January",
       eventTickets: "23",
       eventPrice: "$2323",
+      eventCategory: "Football",
     },
     {
       id: 1,
@@ -27,6 +28,7 @@ const HomeImg = () => {
       eventDay: "12 December",
       eventTickets: "23",
       eventPrice: "$2323",
+      eventCategory: "Football",
     },
     {
       id: 2,
@@ -37,6 +39,7 @@ const HomeImg = () => {
       eventDay: "12 January",
       eventTickets: "23",
       eventPrice: "$2323",
+      eventCategory: "Football",
     },
   ]);
   return (
