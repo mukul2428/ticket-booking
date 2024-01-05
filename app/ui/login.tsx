@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { login } from "../state/userData/userDataSlice";
 import { loginNotClick } from "../state/userData/loginClickedSlice";
+import Link from "next/link";
 
 const Login = () => {
   const userData = useSelector((state: RootState) => state.user);
   const loginClicked = useSelector((state: RootState) => state.loginClicked);
   const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,
@@ -31,7 +31,6 @@ const Login = () => {
     );
     dispatch(loginNotClick());
   };
-
   useEffect(() => {
     console.log(userData);
   }, [userData]);
@@ -77,6 +76,11 @@ const Login = () => {
                 <label className="text-sm mx-2 text-gray-400">
                   Remember me
                 </label>
+                <Link href={"/sign-up"}>
+                  <p className="mt-1 mx-10 text-orange-600 underline text-xs">
+                    New User?
+                  </p>
+                </Link>
               </div>
               <button
                 type="submit"
