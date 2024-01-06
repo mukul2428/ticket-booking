@@ -5,8 +5,7 @@ import { loginInputs } from "../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
-import { login } from "../state/userData/userDataSlice";
-import Link from "next/link";
+import { login } from "../state/userData/loginDataSlice";
 import { useRouter } from "next/navigation";
 
 interface LoginProps {
@@ -15,7 +14,7 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
-  const userData = useSelector((state: RootState) => state.user);
+  const userData = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch();
   const {
     register,
@@ -28,7 +27,6 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
     console.log(data);
     dispatch(
       login({
-        loggedIn: true,
         email: data.email,
         password: data.password,
         rememberMe: data.rememberMe,
