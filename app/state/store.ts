@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import loginClickedSlice from "./userData/loginClickedSlice";
 import userDataSlice from "./userData/userDataSlice";
 import sellTicketsSlice from "./userData/sellTicketsSlice";
 export const store = configureStore({
@@ -7,7 +6,6 @@ export const store = configureStore({
         // we have userReducer slice here
         // we can have many slices here
         user: userDataSlice,
-        loginClicked: loginClickedSlice,
         sellTickets: sellTicketsSlice
     },
 })

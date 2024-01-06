@@ -6,12 +6,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { login } from "../state/userData/userDataSlice";
-import { loginNotClick } from "../state/userData/loginClickedSlice";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const Login = () => {
+interface LoginProps {
+  setLoginVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoginVisible: boolean;
+}
+
+const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
   const userData = useSelector((state: RootState) => state.user);
-  const loginClicked = useSelector((state: RootState) => state.loginClicked);
   const dispatch = useDispatch();
   const {
     register,
@@ -30,15 +34,19 @@ const Login = () => {
         rememberMe: data.rememberMe,
       })
     );
-    dispatch(loginNotClick());
   };
   useEffect(() => {
     console.log(userData);
   }, [userData]);
 
-  return loginClicked ? (
+  const router = useRouter();
+
+  return (
     <>
-      <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex-center">
+      <div
+        className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex-center"
+        style={{ zIndex: 9999 }}
+      >
         <div className="w-[400px]">
           <div className="bg-white rounded-md p-6">
             <h1 className="text-lg font-bold">Log In</h1>
@@ -77,11 +85,15 @@ const Login = () => {
                 <label className="text-sm mx-2 text-gray-400">
                   Remember me
                 </label>
-                <Link href={"/sign-up"}>
-                  <p className="mt-1 mx-10 text-orange-600 underline text-xs">
-                    New User?
-                  </p>
-                </Link>
+                <p
+                  onClick={() => {
+                    setLoginVisible(!isLoginVisible);
+                    router.push("/sign-up", { scroll: false });
+                  }}
+                  className="mt-1 mx-10 text-orange-600 underline text-xs cursor-pointer"
+                >
+                  New User?
+                </p>
               </div>
               <button
                 type="submit"
@@ -107,8 +119,6 @@ const Login = () => {
         </div>
       </div>
     </>
-  ) : (
-    <></>
   );
 };
 
