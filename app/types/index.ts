@@ -5,6 +5,16 @@ export type loginInputs = {
   password: string;
   rememberMe: string;
 };
+export type signUpInputs = {
+  fname: string;
+  sname: string;
+  email: string;
+  password: string;
+  phoneNo: number;
+  becomeMember: boolean;
+  sendMail: boolean;
+  shareData: boolean;
+};
 export type priceInputs = {
   price: string;
 };
@@ -91,12 +101,6 @@ export type SellTicketsInputs = {
     myApporval: boolean;
   }
 }
-export type userState = {
-  loggedIn: boolean;
-  email: string;
-  password: string;
-  rememberMe: string;
-};
 export type eventsData = {
   id: number;
   imageType: string;

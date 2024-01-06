@@ -1,25 +1,22 @@
-import { userState } from "@/app/types";
+import { loginInputs } from "@/app/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: userState = {
-  loggedIn: false,
+const initialState: loginInputs = {
   email: "",
   password: "",
   rememberMe: ""
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: "login",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<userState>) => {
-      state.loggedIn = true;
+    login: (state, action: PayloadAction<loginInputs>) => {
       state.email = action.payload.email;
       state.password = action.payload.password;
       state.rememberMe = action.payload.rememberMe;
     },
     logout: (state) => {
-      state.loggedIn = false;
       state.email = "";
       state.password = "";
     },
