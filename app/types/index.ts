@@ -49,7 +49,7 @@ export type bankInfoInputs = {
 };
 export type SellTicketsInputs = {
   eventsData : {
-    imageType: string;
+    imageType: string | null;
     eventName: string;
     eventLocation: string;
     eventDate: string;
@@ -108,3 +108,8 @@ export type eventsData = {
   eventPrice: string;
   eventCategory: string;
 };
+export type teamsData = {
+  id: number;
+  imageType: string;
+  teamName: string;
+}

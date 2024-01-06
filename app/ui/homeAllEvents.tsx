@@ -1,7 +1,8 @@
 "use client";
 import Events from "./events";
+import Teams from "./teams";
 import { useState } from "react";
-import { EventContext } from "../hooks/context";
+import { EventContext, TeamContext } from "../hooks/context";
 
 const HomeAllEvents = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -85,6 +86,13 @@ const HomeAllEvents = () => {
       eventCategory: "Concert",
     },
   ];
+  const teamsData = [
+    {
+      id: 0,
+      imageType: "football.jpg",
+      teamName: "CSK",
+    },
+  ];
   const displayEvents = eventsData.slice(
     currentIndex,
     currentIndex + cardsPerPage
@@ -111,9 +119,7 @@ const HomeAllEvents = () => {
         />
       </div>
 
-      <div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-      >
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="font-poppins-bold text-white font-helvetica text-4xl font-bold ">
           <div className="text-center">Buy and sell tickets</div>
           <div className="text-center">for thousands of events!</div>
@@ -244,11 +250,11 @@ const HomeAllEvents = () => {
         <hr className="h-px my-4 bg-gray-300 border-0 w-24"></hr>
       </div>
       <div className="flex justify-around my-6 py-4 mx-8">
-        {eventsData.map((event) => {
+        {teamsData.map((event) => {
           return (
-            <EventContext.Provider value={event} key={event.id}>
-              <Events key={event.id} />
-            </EventContext.Provider>
+            <TeamContext.Provider value={event} key={event.id}>
+              <Teams key={event.id} />
+            </TeamContext.Provider>
           );
         })}
       </div>
