@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "./ui/header";
 import { Provider } from "react-redux";
 import { store } from "./state/store";
+import Footer from "./ui/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Provider store={store}>
           <Header />
           {children}
+          <Footer />
         </Provider>
       </body>
     </html>
