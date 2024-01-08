@@ -8,7 +8,7 @@ const DisplayEventImage = () => {
     <>
       <div className="flex items-center justify-center w-screen h-72 relative">
         <img
-          src={eventData.imageType as string}
+          src={eventData.eventImage as string}
           alt="Uploaded"
           className="object-cover w-full h-full"
         />

@@ -10,7 +10,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: SellTicketsInputs = {
   eventsData: {
-    imageType: "",
+    eventImage: "",
     eventName: "",
     eventLocation: "",
     eventDate: "",
@@ -53,51 +53,24 @@ const initialState: SellTicketsInputs = {
   },
 };
 
-const userSlice = createSlice({
+const sellTicketSlice = createSlice({
   name: "sellTickets",
   initialState,
   reducers: {
     setEventData: (state, action: PayloadAction<eventDataInputs>) => {
-      state.eventsData.imageType = action.payload.eventImage;
-      state.eventsData.eventName = action.payload.eventName;
-      state.eventsData.eventLocation = action.payload.eventLocation;
-      state.eventsData.eventDate = action.payload.eventDate;
-      state.eventsData.eventTime = action.payload.eventTime;
-      state.eventsData.eventCategory = action.payload.eventCategory;
+      state.eventsData = action.payload;
     },
     setTicketData: (state, action: PayloadAction<ticketDataInputs>) => {
-      state.ticketData.noOfTickets = action.payload.noOfTickets;
-      state.ticketData.ticketFormat = action.payload.ticketFormat;
-      state.ticketData.ticketLocation = action.payload.ticketLocation;
-      state.ticketData.ticketQueue = action.payload.ticketQueue;
-      state.ticketData.restrictions = action.payload.restrictions;
-      state.ticketData.advantages = action.payload.advantages;
-      state.ticketData.readyTicket = action.payload.readyTicket;
+      state.ticketData = action.payload;
     },
     setPrice: (state, action: PayloadAction<priceInputs>) => {
-      state.salePrice.price = action.payload.price;
+      state.salePrice = action.payload;
     },
     setPersonalInfo: (state, action: PayloadAction<personalInfoInputs>) => {
-      state.personalInformation.firstName = action.payload.firstName;
-      state.personalInformation.lastName = action.payload.lastName;
-      state.personalInformation.email = action.payload.email;
-      state.personalInformation.phoneNumber = action.payload.phoneNumber;
-      state.personalInformation.address = action.payload.address;
-      state.personalInformation.country = action.payload.country;
-      state.personalInformation.province = action.payload.province;
-      state.personalInformation.postalCode = action.payload.postalCode;
+      state.personalInformation = action.payload;
     },
-    setBankInfo: (state, action: PayloadAction<bankInfoInputs>): void => {
-      state.bankInformation.cardOwner = action.payload.cardOwner;
-      state.bankInformation.cardType = action.payload.cardType;
-      state.bankInformation.cardNumber = action.payload.cardNumber;
-      state.bankInformation.month = action.payload.month;
-      state.bankInformation.year = action.payload.year;
-      state.bankInformation.cvv = action.payload.cvv;
-      state.bankInformation.accountOwner = action.payload.accountOwner;
-      state.bankInformation.iban = action.payload.iban;
-      state.bankInformation.bic = action.payload.bic;
-      state.bankInformation.myApporval = action.payload.myApporval;
+    setBankInfo: (state, action: PayloadAction<bankInfoInputs>) => {
+      state.bankInformation = action.payload;
     },
   },
 });
@@ -109,6 +82,6 @@ export const {
   setPrice,
   setPersonalInfo,
   setBankInfo,
-} = userSlice.actions;
+} = sellTicketSlice.actions;
 
-export default userSlice.reducer;
+export default sellTicketSlice.reducer;

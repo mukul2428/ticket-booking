@@ -25,7 +25,7 @@ export type eventDataInputs = {
   eventDate: string;
   eventTime: string;
   eventCategory: string;
-}
+};
 export type ticketDataInputs = {
   noOfTickets: number;
   ticketFormat: string;
@@ -34,12 +34,12 @@ export type ticketDataInputs = {
   restrictions: string[];
   advantages: string[];
   readyTicket: boolean;
-}
+};
 export type personalInfoInputs = {
   firstName: string;
   lastName: string;
   email: string;
-  phoneNumber:number;
+  phoneNumber: number;
   address: string;
   country: string;
   province: string;
@@ -48,25 +48,25 @@ export type personalInfoInputs = {
 export type bankInfoInputs = {
   cardOwner: string;
   cardType: string;
-  cardNumber:number;
-  month:number;
-  year:number;
-  cvv:number;
+  cardNumber: number;
+  month: number;
+  year: number;
+  cvv: number;
   accountOwner: string;
   iban: string;
   bic: string;
   myApporval: boolean;
 };
 export type SellTicketsInputs = {
-  eventsData : {
-    imageType: string | null;
+  eventsData: {
+    eventImage: string | null;
     eventName: string;
     eventLocation: string;
     eventDate: string;
     eventTime: string;
     eventCategory: string;
-  }
-  ticketData : {
+  };
+  ticketData: {
     noOfTickets: number;
     ticketFormat: string;
     ticketLocation: string;
@@ -74,11 +74,11 @@ export type SellTicketsInputs = {
     restrictions: string[];
     advantages: string[];
     readyTicket: boolean;
-  },
+  };
   salePrice: {
     price: string;
   };
-  personalInformation:{
+  personalInformation: {
     firstName: string;
     lastName: string;
     email: string;
@@ -87,8 +87,8 @@ export type SellTicketsInputs = {
     country: string;
     province: string;
     postalCode: string;
-  }
-  bankInformation:{
+  };
+  bankInformation: {
     cardOwner: string;
     cardType: string;
     cardNumber: number;
@@ -99,8 +99,9 @@ export type SellTicketsInputs = {
     iban: string;
     bic: string;
     myApporval: boolean;
-  }
-}
+  };
+};
+
 export type eventsData = {
   id: number;
   imageType: string;
@@ -116,4 +117,4 @@ export type teamsData = {
   id: number;
   imageType: string;
   teamName: string;
-}
+};

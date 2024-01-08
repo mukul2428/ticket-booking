@@ -1,24 +1,23 @@
 import React, { useContext } from "react";
-import { EventContext } from "../hooks/context";
 import Link from "next/link";
-const Cards = () => {
-  const eventsData = useContext(EventContext);
+const Cards: any = ({items}:any) => {
+  console.log(items);
   return (
     <>
       <Link href={"/sell-tickets/ticket-details"}>
         <div className="relative max-w-sm shadow-custom rounded-lg shadow ">
           <img
             className="rounded-t-lg object-cover h-48 w-96"
-            src={eventsData.imageType}
+            src={items?.eventImage as string}
             alt=""
           />
 
           <div className="p-5">
             <span className="p-2 rounded-md text-white bg-orange-600">
-              {eventsData.eventCategory}
+              {items?.eventCategory}
             </span>
             <h5 className="dark:text-black mb-2 text-2xl font-bold tracking-tight text-gray-900">
-              {eventsData.eventName}
+              {items?.eventName}
             </h5>
 
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">

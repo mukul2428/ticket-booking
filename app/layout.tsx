@@ -6,6 +6,8 @@ import Header from "./ui/header";
 import { Provider } from "react-redux";
 import { store } from "./state/store";
 import Footer from "./ui/footer";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +21,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  let persistor = persistStore(store);
   return (
     <html lang="en">
       <body className={inter.className}>
         <Provider store={store}>
-          <Header />
-          {children}
-          <Footer />
+          <PersistGate persistor={persistor}>
+            <Header />
+            {children}
+            <Footer />
+          </PersistGate>
         </Provider>
       </body>
     </html>

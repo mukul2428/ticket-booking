@@ -57,7 +57,15 @@ const PersonalDetails = () => {
               type="text"
               className="common-input"
               placeholder="Your Name"
+              {...register("firstName", {
+                required: true,
+              })}
             />
+            {errors.firstName && (
+              <span className="text-xs text-red-500">
+                First Name is required
+              </span>
+            )}
           </div>
           <div className="ml-4 flex flex-col">
             <label className="font-semibold">Your Surname</label>
@@ -65,7 +73,15 @@ const PersonalDetails = () => {
               type="text"
               className="common-input"
               placeholder="Your Surname"
+              {...register("lastName", {
+                required: true,
+              })}
             />
+            {errors.lastName && (
+              <span className="text-xs text-red-500">
+                Last Name is required
+              </span>
+            )}
           </div>
         </div>
         <div className="mt-6 flex flex-row">
@@ -81,11 +97,31 @@ const PersonalDetails = () => {
               type="text"
               className="common-input"
               placeholder="E-mail Address"
+              {...register("email", {
+                required: true,
+              })}
             />
+            {errors.email && (
+              <span className="text-xs text-red-500">
+                Email is required
+              </span>
+            )}
           </div>
           <div className="ml-4 flex flex-col">
             <label className="font-semibold">Your Phone</label>
-            <input type="number" className="common-input" placeholder="+91" />
+            <input
+              type="number"
+              className="common-input"
+              placeholder="+91"
+              {...register("phoneNumber", {
+                required: true,
+              })}
+            />
+            {errors.phoneNumber && (
+              <span className="text-xs text-red-500">
+                Phone Number is required
+              </span>
+            )}
           </div>
         </div>
         <div className="mt-6 flex flex-row">

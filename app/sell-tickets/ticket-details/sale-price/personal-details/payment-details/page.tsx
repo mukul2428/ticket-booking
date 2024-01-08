@@ -1,10 +1,12 @@
 "use client";
 import DisplayEventImage from "@/app/ui/displayEventImage";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { bankInfoInputs } from "@/app/types";
 import { setBankInfo } from "@/app/state/userData/sellTicketsSlice";
+import { RootState } from "@/app/state/store";
+import { setAllEventData } from "@/app/state/userData/allEventDataSlice";
 
 const PaymentDetails = () => {
   const router = useRouter();
@@ -15,6 +17,7 @@ const PaymentDetails = () => {
     watch,
     formState: { errors },
   } = useForm<bankInfoInputs>();
+  const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
 
   const onSubmit: SubmitHandler<bankInfoInputs> = (data) => {
     dispatch(
@@ -31,6 +34,7 @@ const PaymentDetails = () => {
         myApporval: data.myApporval,
       })
     );
+    dispatch(setAllEventData(sellTicketsData));
     router.push(
       "/sell-tickets/ticket-details/sale-price/personal-details/payment-details/display-ticket"
     );

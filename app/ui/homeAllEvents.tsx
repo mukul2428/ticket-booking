@@ -1,91 +1,95 @@
 "use client";
-import Events from "./events";
 import Teams from "./teams";
 import { useState } from "react";
-import { EventContext, TeamContext } from "../hooks/context";
+import { TeamContext } from "../hooks/context";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
+import Cards from "./cards";
 
 const HomeAllEvents = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardsPerPage = 3;
-  const eventsData = [
-    {
-      id: 0,
-      imageType: "football.jpg",
-      eventName: "football",
-      eventLocation: "Mumbai",
-      eventTime: "3PM",
-      eventDay: "12 January",
-      eventTickets: "23",
-      eventPrice: "$2323",
-      eventCategory: "Football",
-    },
-    {
-      id: 1,
-      imageType: "football.jpg",
-      eventName: "basketball",
-      eventLocation: "Chennai",
-      eventTime: "8PM",
-      eventDay: "12 December",
-      eventTickets: "23",
-      eventPrice: "$2323",
-      eventCategory: "Football",
-    },
-    {
-      id: 2,
-      imageType: "football.jpg",
-      eventName: "concert",
-      eventLocation: "Gurugram",
-      eventTime: "3PM",
-      eventDay: "12 January",
-      eventTickets: "23",
-      eventPrice: "$2323",
-      eventCategory: "Football",
-    },
-    {
-      id: 4,
-      imageType: "football.jpg",
-      eventName: "concert",
-      eventLocation: "Gurugram",
-      eventTime: "3PM",
-      eventDay: "12 January",
-      eventTickets: "23",
-      eventPrice: "$2323",
-      eventCategory: "Football",
-    },
-    {
-      id: 5,
-      imageType: "football.jpg",
-      eventName: "WWE",
-      eventLocation: "Gurugram",
-      eventTime: "3PM",
-      eventDay: "12 January",
-      eventTickets: "23",
-      eventPrice: "$2323",
-      eventCategory: "Sports",
-    },
-    {
-      id: 6,
-      imageType: "football.jpg",
-      eventName: "game",
-      eventLocation: "Gurugram",
-      eventTime: "3PM",
-      eventDay: "12 January",
-      eventTickets: "23",
-      eventPrice: "$2323",
-      eventCategory: "Football",
-    },
-    {
-      id: 7,
-      imageType: "football.jpg",
-      eventName: "Arena",
-      eventLocation: "Gurugram",
-      eventTime: "3PM",
-      eventDay: "12 January",
-      eventTickets: "23",
-      eventPrice: "$2323",
-      eventCategory: "Concert",
-    },
-  ];
+  // const eventsData = [
+  //   {
+  //     id: 0,
+  //     imageType: "football.jpg",
+  //     eventName: "football",
+  //     eventLocation: "Mumbai",
+  //     eventTime: "3PM",
+  //     eventDay: "12 January",
+  //     eventTickets: "23",
+  //     eventPrice: "$2323",
+  //     eventCategory: "Football",
+  //   },
+  //   {
+  //     id: 1,
+  //     imageType: "football.jpg",
+  //     eventName: "basketball",
+  //     eventLocation: "Chennai",
+  //     eventTime: "8PM",
+  //     eventDay: "12 December",
+  //     eventTickets: "23",
+  //     eventPrice: "$2323",
+  //     eventCategory: "Football",
+  //   },
+  //   {
+  //     id: 2,
+  //     imageType: "football.jpg",
+  //     eventName: "concert",
+  //     eventLocation: "Gurugram",
+  //     eventTime: "3PM",
+  //     eventDay: "12 January",
+  //     eventTickets: "23",
+  //     eventPrice: "$2323",
+  //     eventCategory: "Football",
+  //   },
+  //   {
+  //     id: 4,
+  //     imageType: "football.jpg",
+  //     eventName: "concert",
+  //     eventLocation: "Gurugram",
+  //     eventTime: "3PM",
+  //     eventDay: "12 January",
+  //     eventTickets: "23",
+  //     eventPrice: "$2323",
+  //     eventCategory: "Football",
+  //   },
+  //   {
+  //     id: 5,
+  //     imageType: "football.jpg",
+  //     eventName: "WWE",
+  //     eventLocation: "Gurugram",
+  //     eventTime: "3PM",
+  //     eventDay: "12 January",
+  //     eventTickets: "23",
+  //     eventPrice: "$2323",
+  //     eventCategory: "Sports",
+  //   },
+  //   {
+  //     id: 6,
+  //     imageType: "football.jpg",
+  //     eventName: "game",
+  //     eventLocation: "Gurugram",
+  //     eventTime: "3PM",
+  //     eventDay: "12 January",
+  //     eventTickets: "23",
+  //     eventPrice: "$2323",
+  //     eventCategory: "Football",
+  //   },
+  //   {
+  //     id: 7,
+  //     imageType: "football.jpg",
+  //     eventName: "Arena",
+  //     eventLocation: "Gurugram",
+  //     eventTime: "3PM",
+  //     eventDay: "12 January",
+  //     eventTickets: "23",
+  //     eventPrice: "$2323",
+  //     eventCategory: "Concert",
+  //   },
+  // ];
+
+  const allEvents = useSelector((state: RootState) => state.allEvents);
   const teamsData = [
     {
       id: 0,
@@ -93,18 +97,18 @@ const HomeAllEvents = () => {
       teamName: "CSK",
     },
   ];
-  const displayEvents = eventsData.slice(
+  const displayEvents = allEvents.slice(
     currentIndex,
     currentIndex + cardsPerPage
   );
   const handleNext = () => {
-    const lastIndex = eventsData.length - 1;
+    const lastIndex = allEvents.length - 1;
     const nextIndex = (currentIndex + cardsPerPage) % (lastIndex + 1);
     setCurrentIndex(nextIndex);
   };
 
   const handlePrev = () => {
-    const lastIndex = eventsData.length - 1;
+    const lastIndex = allEvents.length - 1;
     const prevIndex =
       (currentIndex - cardsPerPage + lastIndex + 1) % (lastIndex + 1);
     setCurrentIndex(prevIndex);
@@ -175,9 +179,11 @@ const HomeAllEvents = () => {
       <div className="flex justify-around my-6 py-4 mx-8">
         {displayEvents.map((event) => {
           return (
-            <EventContext.Provider value={event} key={event.id}>
-              <Events key={event.id} />
-            </EventContext.Provider>
+            // <EventContext.Provider value={event} key={event.id}>
+            <span key={event.eventsData?.id}>
+              <Cards items={event.eventsData} />
+            </span>
+            // </EventContext.Provider>
           );
         })}
       </div>

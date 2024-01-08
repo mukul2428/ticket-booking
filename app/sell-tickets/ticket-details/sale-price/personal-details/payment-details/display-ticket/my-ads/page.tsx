@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import DisplayEventImage from "@/app/ui/displayEventImage";
 const Myads = () => {
   const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
+  const eventTicketsData = useSelector((state: RootState) => state.allEvents);
   console.log(sellTicketsData);
+  console.log(eventTicketsData);
   return (
     <>
       <DisplayEventImage />
@@ -17,7 +19,7 @@ const Myads = () => {
           <div className="m-4 p-4 flex flex-row">
             <img
               className="m-2 p-4 w-50 h-40 rounded-lg"
-              src={sellTicketsData.eventsData.imageType as string}
+              src={sellTicketsData.eventsData.eventImage as string}
               alt="image"
             ></img>
             <div className="m-2 p-4 flex flex-col">
