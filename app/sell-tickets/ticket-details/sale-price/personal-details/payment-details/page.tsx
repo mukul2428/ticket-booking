@@ -7,6 +7,7 @@ import { bankInfoInputs } from "@/app/types";
 import { setBankInfo } from "@/app/state/userData/sellTicketsSlice";
 import { RootState } from "@/app/state/store";
 import { setAllEventData } from "@/app/state/userData/allEventDataSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const PaymentDetails = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const PaymentDetails = () => {
         myApporval: data.myApporval,
       })
     );
-    dispatch(setAllEventData(sellTicketsData));
+    dispatch(setAllEventData({...sellTicketsData, id: uuidv4()}));
     router.push(
       "/sell-tickets/ticket-details/sale-price/personal-details/payment-details/display-ticket"
     );

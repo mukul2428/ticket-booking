@@ -58,6 +58,7 @@ export type bankInfoInputs = {
   myApporval: boolean;
 };
 export type SellTicketsInputs = {
+  id: string;
   eventsData: {
     eventImage: string | null;
     eventName: string;

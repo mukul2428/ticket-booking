@@ -9,86 +9,6 @@ import Cards from "./cards";
 const HomeAllEvents = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardsPerPage = 3;
-  // const eventsData = [
-  //   {
-  //     id: 0,
-  //     imageType: "football.jpg",
-  //     eventName: "football",
-  //     eventLocation: "Mumbai",
-  //     eventTime: "3PM",
-  //     eventDay: "12 January",
-  //     eventTickets: "23",
-  //     eventPrice: "$2323",
-  //     eventCategory: "Football",
-  //   },
-  //   {
-  //     id: 1,
-  //     imageType: "football.jpg",
-  //     eventName: "basketball",
-  //     eventLocation: "Chennai",
-  //     eventTime: "8PM",
-  //     eventDay: "12 December",
-  //     eventTickets: "23",
-  //     eventPrice: "$2323",
-  //     eventCategory: "Football",
-  //   },
-  //   {
-  //     id: 2,
-  //     imageType: "football.jpg",
-  //     eventName: "concert",
-  //     eventLocation: "Gurugram",
-  //     eventTime: "3PM",
-  //     eventDay: "12 January",
-  //     eventTickets: "23",
-  //     eventPrice: "$2323",
-  //     eventCategory: "Football",
-  //   },
-  //   {
-  //     id: 4,
-  //     imageType: "football.jpg",
-  //     eventName: "concert",
-  //     eventLocation: "Gurugram",
-  //     eventTime: "3PM",
-  //     eventDay: "12 January",
-  //     eventTickets: "23",
-  //     eventPrice: "$2323",
-  //     eventCategory: "Football",
-  //   },
-  //   {
-  //     id: 5,
-  //     imageType: "football.jpg",
-  //     eventName: "WWE",
-  //     eventLocation: "Gurugram",
-  //     eventTime: "3PM",
-  //     eventDay: "12 January",
-  //     eventTickets: "23",
-  //     eventPrice: "$2323",
-  //     eventCategory: "Sports",
-  //   },
-  //   {
-  //     id: 6,
-  //     imageType: "football.jpg",
-  //     eventName: "game",
-  //     eventLocation: "Gurugram",
-  //     eventTime: "3PM",
-  //     eventDay: "12 January",
-  //     eventTickets: "23",
-  //     eventPrice: "$2323",
-  //     eventCategory: "Football",
-  //   },
-  //   {
-  //     id: 7,
-  //     imageType: "football.jpg",
-  //     eventName: "Arena",
-  //     eventLocation: "Gurugram",
-  //     eventTime: "3PM",
-  //     eventDay: "12 January",
-  //     eventTickets: "23",
-  //     eventPrice: "$2323",
-  //     eventCategory: "Concert",
-  //   },
-  // ];
-
   const allEvents = useSelector((state: RootState) => state.allEvents);
   const teamsData = [
     {
@@ -178,54 +98,58 @@ const HomeAllEvents = () => {
       </div>
       <div className="flex justify-around my-6 py-4 mx-8">
         {displayEvents.map((event) => {
-          return (
-            // <EventContext.Provider value={event} key={event.id}>
-            <span key={event.eventsData?.id}>
+          return event.eventsData.eventName !== null ? (
+            <span key={event.id}>
               <Cards items={event.eventsData} />
             </span>
-            // </EventContext.Provider>
+          ) : (
+            <>
+              <span className="text-orange-600">No Events</span>
+            </>
           );
         })}
       </div>
-      <div className="flex flex-row justify-center">
-        <button
-          className="m-4 p-4 border-2 border-orange-600 rounded-lg"
-          onClick={handlePrev}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="20"
-            viewBox="0 0 30 20"
-            fill="none"
+      {displayEvents[0].eventsData.eventName !== null ? (
+        <div className="flex flex-row justify-center">
+          <button
+            className="m-4 p-4 border-2 border-orange-600 rounded-lg"
+            onClick={handlePrev}
           >
-            <path
-              d="M9.11836 0.881643C9.60528 0.394725 10.3947 0.394725 10.8816 0.881644C11.3683 1.36825 11.3686 2.1571 10.8824 2.64414L4.7875 8.75L28.75 8.75C29.4404 8.75 30 9.30964 30 10C30 10.6904 29.4404 11.25 28.75 11.25L4.7875 11.25L10.8863 17.3379C11.377 17.8277 11.3773 18.6227 10.8871 19.1129C10.3972 19.6028 9.60283 19.6028 9.1129 19.1129L4.37114e-07 10L9.11836 0.881643Z"
-              fill="black"
-            />
-          </svg>
-        </button>
-        <button className="text-sm m-4 p-4 border-2 border-orange-600 rounded-lg">
-          View More Events
-        </button>
-        <button
-          className="m-4 p-4 border-2 border-orange-600 rounded-lg"
-          onClick={handleNext}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="20"
-            viewBox="0 0 30 20"
-            fill="none"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="20"
+              viewBox="0 0 30 20"
+              fill="none"
+            >
+              <path
+                d="M9.11836 0.881643C9.60528 0.394725 10.3947 0.394725 10.8816 0.881644C11.3683 1.36825 11.3686 2.1571 10.8824 2.64414L4.7875 8.75L28.75 8.75C29.4404 8.75 30 9.30964 30 10C30 10.6904 29.4404 11.25 28.75 11.25L4.7875 11.25L10.8863 17.3379C11.377 17.8277 11.3773 18.6227 10.8871 19.1129C10.3972 19.6028 9.60283 19.6028 9.1129 19.1129L4.37114e-07 10L9.11836 0.881643Z"
+                fill="black"
+              />
+            </svg>
+          </button>
+          <button className="text-sm m-4 p-4 border-2 border-orange-600 rounded-lg">
+            View More Events
+          </button>
+          <button
+            className="m-4 p-4 border-2 border-orange-600 rounded-lg"
+            onClick={handleNext}
           >
-            <path
-              d="M20.8816 0.881643C20.3947 0.394725 19.6053 0.394725 19.1184 0.881644C18.6317 1.36825 18.6314 2.1571 19.1176 2.64414L25.2125 8.75L1.25 8.75C0.559642 8.75 -4.06937e-07 9.30964 -4.37114e-07 10C-4.6729e-07 10.6904 0.559644 11.25 1.25 11.25L25.2125 11.25L19.1137 17.3379C18.623 17.8277 18.6227 18.6227 19.1129 19.1129C19.6028 19.6028 20.3972 19.6028 20.8871 19.1129L30 10L20.8816 0.881643Z"
-              fill="black"
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="20"
+              viewBox="0 0 30 20"
+              fill="none"
+            >
+              <path
+                d="M20.8816 0.881643C20.3947 0.394725 19.6053 0.394725 19.1184 0.881644C18.6317 1.36825 18.6314 2.1571 19.1176 2.64414L25.2125 8.75L1.25 8.75C0.559642 8.75 -4.06937e-07 9.30964 -4.37114e-07 10C-4.6729e-07 10.6904 0.559644 11.25 1.25 11.25L25.2125 11.25L19.1137 17.3379C18.623 17.8277 18.6227 18.6227 19.1129 19.1129C19.6028 19.6028 20.3972 19.6028 20.8871 19.1129L30 10L20.8816 0.881643Z"
+                fill="black"
+              />
+            </svg>
+          </button>
+        </div>
+      ) : null}
 
       <div className="flex flex-row my-6 justify-center mt-10">
         <div className="text-3xl">

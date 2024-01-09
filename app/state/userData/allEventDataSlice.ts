@@ -6,6 +6,7 @@ type allEventTicketsType = SellTicketsInputs[];
 
 const initialState: allEventTicketsType = [
   {
+    id: uuidv4(),
     eventsData: {
       eventImage: null,
       eventName: "",
@@ -57,10 +58,9 @@ const allEventsSlice = createSlice({
   reducers: {
     setAllEventData: (state, action: PayloadAction<SellTicketsInputs>) => {
       const newEvent = {
-        id: uuidv4(),
         ...action.payload,
       };
-      if (state.length === 1) {
+      if (state[0].eventsData.eventImage === null) {
         state[0] = newEvent;
       } else {
         return [newEvent, ...state];
