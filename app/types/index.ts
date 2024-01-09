@@ -57,8 +57,52 @@ export type bankInfoInputs = {
   bic: string;
   myApporval: boolean;
 };
-export type SellTicketsInputs = {
+export type allEventsInputs = {
   id: string;
+  eventsData: {
+    eventImage: string | null;
+    eventName: string;
+    eventLocation: string;
+    eventDate: string;
+    eventTime: string;
+    eventCategory: string;
+  };
+  ticketData: {
+    noOfTickets: number;
+    ticketFormat: string;
+    ticketLocation: string;
+    ticketQueue: string;
+    restrictions: string[];
+    advantages: string[];
+    readyTicket: boolean;
+  };
+  salePrice: {
+    price: string;
+  };
+  personalInformation: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: number;
+    address: string;
+    country: string;
+    province: string;
+    postalCode: string;
+  };
+  bankInformation: {
+    cardOwner: string;
+    cardType: string;
+    cardNumber: number;
+    month: number;
+    year: number;
+    cvv: number;
+    accountOwner: string;
+    iban: string;
+    bic: string;
+    myApporval: boolean;
+  };
+};
+export type SellTicketsInputs = {
   eventsData: {
     eventImage: string | null;
     eventName: string;

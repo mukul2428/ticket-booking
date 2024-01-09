@@ -1,8 +1,8 @@
-import { SellTicketsInputs } from "@/app/types";
+import { allEventsInputs } from "@/app/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
-type allEventTicketsType = SellTicketsInputs[];
+type allEventTicketsType = allEventsInputs[];
 
 const initialState: allEventTicketsType = [
   {
@@ -56,7 +56,7 @@ const allEventsSlice = createSlice({
   name: "allEvents",
   initialState,
   reducers: {
-    setAllEventData: (state, action: PayloadAction<SellTicketsInputs>) => {
+    setAllEventData: (state, action: PayloadAction<allEventsInputs>) => {
       const newEvent = {
         ...action.payload,
       };
