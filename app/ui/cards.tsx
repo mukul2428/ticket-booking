@@ -1,15 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import Link from "next/link";
-const Cards: any = ({items}:any) => {
-  console.log(items);
+import Image from "next/image";
+const Cards: any = ({ items }: any) => {
   return (
     <>
       <Link href={"/sell-tickets/ticket-details"}>
         <div className="relative max-w-sm shadow-custom rounded-lg shadow ">
-          <img
+          <Image
             className="rounded-t-lg object-cover h-48 w-96"
             src={items?.eventImage as string}
             alt=""
+            width="0"
+            height="0"
+            sizes="100vw"
           />
 
           <div className="p-5">

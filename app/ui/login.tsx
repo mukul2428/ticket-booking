@@ -1,12 +1,11 @@
 "use client";
-
-import { useEffect } from "react";
 import { loginInputs } from "../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { login } from "../state/userData/loginDataSlice";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface LoginProps {
   setLoginVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,7 +23,6 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
   } = useForm<loginInputs>();
 
   const onSubmit: SubmitHandler<loginInputs> = (data) => {
-    console.log(data);
     dispatch(
       login({
         email: data.email,
@@ -32,10 +30,9 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
         rememberMe: data.rememberMe,
       })
     );
-  };
-  useEffect(() => {
+    setLoginVisible(!isLoginVisible);
     console.log(userData);
-  }, [userData]);
+  };
 
   const router = useRouter();
 
@@ -107,10 +104,26 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
             </div>
             <div className="flex flex-row">
               <button className="login-icons">
-                <img className="mx-1" src="/facebook.png"></img>Facebook
+                <Image
+                  className="mx-1 h-auto w-auto"
+                  src="/facebook.png"
+                  alt="facebook"
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                />
+                Facebook
               </button>
               <button className="login-icons">
-                <img className="mx-1" src="/google.png"></img>Google
+                <Image
+                  className="mx-1 h-auto w-auto"
+                  src="/google.png"
+                  alt="google"
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                />
+                Google
               </button>
             </div>
           </div>

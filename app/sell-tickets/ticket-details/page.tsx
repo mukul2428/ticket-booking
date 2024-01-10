@@ -2,11 +2,13 @@
 import { setTicketData } from "@/app/state/userData/sellTicketsSlice";
 import { ticketDataInputs } from "@/app/types";
 import DisplayEventImage from "@/app/ui/displayEventImage";
+import { ExclaimationSvg } from "@/app/ui/svgIcons";
 import TickRectangle from "@/app/ui/ticket-details/ticketRectangle";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+
 const TicketDetails = () => {
   const router = useRouter();
   const {
@@ -25,32 +27,41 @@ const TicketDetails = () => {
         ticketFormat: data.ticketFormat,
         ticketLocation: data.ticketLocation,
         ticketQueue: data.ticketQueue,
-        restrictions: data.restrictions,
-        advantages: data.advantages,
+        restrictions: requirementsSelected,
+        advantages: advantagesSelected,
         readyTicket: data.readyTicket,
       })
     );
     router.push("/sell-tickets/ticket-details/sale-price", { scroll: false });
   };
   const requirements = [
-    "Alcohol Free Area",
-    "Limited View",
-    "Corridor Side",
-    "Visiting Team",
-    "Student Ticket",
-    "Elderly Ticket",
-    "Child Ticket",
-    "Wheelchair Access",
-    "Children can participate in activity under the supervision of their parents",
+    {
+      id: 1,
+      name: "Alcohol Free Area",
+    },
+    { id: 2, name: "Limited View" },
+    { id: 3, name: "Corridor Side" },
+    { id: 4, name: "Visiting Team" },
+    { id: 5, name: "Student Ticket" },
+    { id: 6, name: "Elderly Ticket" },
+    { id: 7, name: "Child Ticket" },
+    { id: 8, name: "Wheelchair Access" },
+    {
+      id: 9,
+      name: "Children can participate in activity under the supervision of their parents",
+    },
   ];
   const advantages = [
-    "VIP Entrance",
-    "Hospitality",
-    "Meet & Greet",
-    "Early Entry",
-    "Parking Included",
-    "Ticket & Hotel Package",
+    { id: 1, name: "VIP Entrance" },
+    { id: 2, name: "Hospitality" },
+    { id: 3, name: "Meet & Greet" },
+    { id: 4, name: "Early Entry" },
+    { id: 5, name: "Parking Included" },
+    { id: 6, name: "Ticket & Hotel Package" },
   ];
+
+  const requirementsSelected: string[] = [];
+  const advantagesSelected: string[] = [];
 
   return (
     <>
@@ -136,18 +147,7 @@ const TicketDetails = () => {
           {...register("ticketQueue")}
         />
         <span className="mt-2 flex flex-row">
-          <svg
-            width="15"
-            height="15"
-            viewBox="0 0 30 30"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M15 0C6.7155 0 0 6.7155 0 15C0 23.2845 6.7155 30 15 30C23.2845 30 30 23.2845 30 15C30 6.7155 23.2845 0 15 0ZM16.5 22.5H13.5V13.5H16.5V22.5ZM16.5 10.5H13.5V7.5H16.5V10.5Z"
-              fill="#E54220"
-            />
-          </svg>
+          <ExclaimationSvg/>
           <span className="text-xs text-gray-400 mx-1">
             If there is no sequence number, leave it blank.
           </span>
@@ -160,8 +160,11 @@ const TicketDetails = () => {
         </div>
         <div className="mt-8 grid grid-cols-3 gap-2 auto-cols-minmax[0,1fr]">
           {requirements.map((category) => (
-            <span key={category}>
-              <TickRectangle category={category} />
+            <span key={category.id}>
+              <TickRectangle
+                categoryName={category.name}
+                requirementsSelected={requirementsSelected}
+              />
             </span>
           ))}
         </div>
@@ -170,8 +173,11 @@ const TicketDetails = () => {
         </div>
         <div className="mt-8 grid grid-cols-3 gap-2 auto-cols-minmax[0,1fr]">
           {advantages.map((category) => (
-            <span key={category}>
-              <TickRectangle category={category} />
+            <span key={category.id}>
+              <TickRectangle
+                categoryName={category.name}
+                requirementsSelected={advantagesSelected}
+              />
             </span>
           ))}
         </div>

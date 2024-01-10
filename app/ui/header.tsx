@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import _debounce from "lodash/debounce";
 import Login from "./login";
+import Image from "next/image";
 
 const Header = () => {
   const [isLoginVisible, setLoginVisible] = useState(false);
@@ -47,7 +48,14 @@ const Header = () => {
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img src="/siteLogo.png" className="h-8" alt="Logo" />
+            <Image
+              className="h-8 w-auto"
+              src="/siteLogo.png"
+              alt="Logo"
+              width="0"
+              height="0"
+              sizes="100vw"
+            />
             <span
               className={`self-center text-2xl font-semibold whitespace-nowrap ${
                 isAtTop ? "text-white" : "text-black"

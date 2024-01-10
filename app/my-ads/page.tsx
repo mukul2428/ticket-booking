@@ -2,10 +2,10 @@
 import { RootState } from "@/app/state/store";
 import { useSelector } from "react-redux";
 import DisplayEventImage from "@/app/ui/displayEventImage";
+import Image from "next/image";
 const Myads = () => {
   const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
   const eventTicketsData = useSelector((state: RootState) => state.allEvents);
-  console.log(sellTicketsData);
   console.log(eventTicketsData);
   return (
     <>
@@ -17,11 +17,14 @@ const Myads = () => {
         </div>
         <div className="m-4 p-4 border-2 border-orange-700 rounded-xl">
           <div className="m-4 p-4 flex flex-row">
-            <img
+            <Image
               className="m-2 p-4 w-50 h-40 rounded-lg"
               src={sellTicketsData.eventsData.eventImage as string}
               alt="image"
-            ></img>
+              width="0"
+              height="0"
+              sizes="100vw"
+            />
             <div className="m-2 p-4 flex flex-col">
               <div className="m-1 p-1 font-bold text-xl">
                 {sellTicketsData.eventsData.eventName}

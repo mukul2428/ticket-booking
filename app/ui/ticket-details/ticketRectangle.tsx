@@ -1,17 +1,28 @@
 "use client";
 import { useState } from "react";
+import { BoxTickSvg } from "../svgIcons";
 
 type rectangleProps = {
-  category: string;
+  categoryName?: string;
+  requirementsSelected: string[];
 };
 
-const TickRectangle: React.FC<rectangleProps> = ({ category }) => {
-  const [isIconVisible, setIconVisibility] = useState(false);
+const TickRectangle: React.FC<rectangleProps> = ({
+  categoryName,
+  requirementsSelected,
+}) => {
   const [isBorderHighlighted, setBorderHighlight] = useState(false);
 
   const toggleIconAndBorderColor = () => {
-    setIconVisibility(!isIconVisible);
     setBorderHighlight(!isBorderHighlighted);
+    if (categoryName) {
+      const index = requirementsSelected.indexOf(categoryName);
+      if (index !== -1) {
+        requirementsSelected.splice(index, 1);
+      } else {
+        requirementsSelected.push(categoryName);
+      }
+    }
   };
   return (
     <div
@@ -20,27 +31,13 @@ const TickRectangle: React.FC<rectangleProps> = ({ category }) => {
       }`}
       onClick={toggleIconAndBorderColor}
     >
-      {isIconVisible && (
+      {isBorderHighlighted && (
         <div className="absolute top-0 right-0 mt-2 mr-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-orange-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            onClick={toggleIconAndBorderColor}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+          <BoxTickSvg />
         </div>
       )}
       <div className="text-center">
-        <p>{category}</p>
+        <p>{categoryName}</p>
       </div>
     </div>
   );

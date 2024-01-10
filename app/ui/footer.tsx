@@ -1,13 +1,18 @@
 "use client";
 
+import Image from "next/image";
+
 const Footer = () => {
   return (
     <>
       <div className="w-screen flex justify-center items-center relative">
-        <img
+        <Image
           src="/CrowedImage.png"
           className="w-full h-auto"
           alt="Home Page Image"
+          width="0"
+          height="0"
+          sizes="100vw"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-90"></div>
         <div className="absolute z-10 bg-white rounded-lg">
