@@ -60,10 +60,10 @@ const allEventsSlice = createSlice({
       const newEvent = {
         ...action.payload,
       };
-      if (state[0].eventsData.eventImage === null) {
-        state[0] = newEvent;
-      } else {
+      if (state[0].eventsData.eventName) {
         return [newEvent, ...state];
+      } else {
+        state[0] = newEvent;
       }
     },
   },

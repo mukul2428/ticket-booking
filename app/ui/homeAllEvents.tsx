@@ -98,18 +98,18 @@ const HomeAllEvents = () => {
       </div>
       <div className="flex justify-around my-6 py-4 mx-8">
         {displayEvents.map((event) => {
-          return event.eventsData.eventName !== null ? (
+          return event.eventsData.eventName ? (
             <span key={event.id}>
               <Cards items={event.eventsData} />
             </span>
           ) : (
             <>
-              <span className="text-orange-600">No Events</span>
+              <span className="text-orange-600">No Events Available</span>
             </>
           );
         })}
       </div>
-      {displayEvents[0].eventsData.eventName !== null ? (
+      {displayEvents[0].eventsData.eventName ? (
         <div className="flex flex-row justify-center">
           <button
             className="m-4 p-4 border-2 border-orange-600 rounded-lg"
