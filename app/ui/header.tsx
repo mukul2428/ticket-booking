@@ -8,14 +8,24 @@ import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isLoginVisible, setLoginVisible] = useState(false);
+  const [isBuyerMode, setIsBuyerMode] = useState(true);
+  const handleToggle = () => {
+    setIsBuyerMode(!isBuyerMode);
+  };
   const links = [
-    { id: 1, name: "Login", href: "" },
+    { id: 1, name: "Login", href: "", disabled: false },
     {
       id: 2,
       name: "Help",
       href: "",
+      disabled: false,
     },
-    { id: 3, name: "Sell Tickets", href: "/sell-tickets" },
+    {
+      id: 3,
+      name: "Sell Tickets",
+      href: "/sell-tickets",
+      disabled: isBuyerMode,
+    },
   ];
   const eventNames = [
     { name: "Football", href: "" },
@@ -44,7 +54,11 @@ const Header = () => {
   const pathname = usePathname();
   return (
     <>
-      <nav className={`sticky top-0 z-50 ${isAtTop && pathname === '/' ? "bg-tranparent" : "bg-white"}`}>
+      <nav
+        className={`sticky top-0 z-50 ${
+          isAtTop && pathname === "/" ? "bg-tranparent" : "bg-white"
+        }`}
+      >
         <div className="flex items-center justify-between p-4">
           <Link
             href="/"
@@ -60,7 +74,7 @@ const Header = () => {
             />
             <span
               className={`self-center text-2xl font-semibold whitespace-nowrap ${
-                isAtTop && pathname === '/' ? "text-white" : "text-black"
+                isAtTop && pathname === "/" ? "text-white" : "text-black"
               }`}
             >
               E V E N T
@@ -72,7 +86,7 @@ const Header = () => {
                 <Link key={link.name} href={link.href}>
                   <li
                     className={`block bg-transparent py-2 px-2 rounded ${
-                      isAtTop && pathname === '/' ? "text-white" : "text-black"
+                      isAtTop && pathname === "/" ? "text-white" : "text-black"
                     }`}
                   >
                     {link.name}
@@ -85,12 +99,13 @@ const Header = () => {
             {links.map((link) => (
               <Link key={link.id} href={link.href}>
                 <button
+                  disabled={link.disabled}
                   type="button"
                   onClick={() =>
                     link.name === "Login" && setLoginVisible(!isLoginVisible)
                   }
                   className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
-                    isAtTop && pathname === '/'
+                    isAtTop && pathname === "/"
                       ? "text-white bg-transparent hover:bg-white hover:text-black border border-white "
                       : "text-black bg-white hover:bg-black hover:text-white border border-black"
                   }`}
@@ -99,6 +114,14 @@ const Header = () => {
                 </button>
               </Link>
             ))}
+            <button
+              className={`w-24 h-10 flex items-center justify-center ${
+                isBuyerMode ? "bg-orange-500" : "bg-green-500"
+              } text-white rounded-lg focus:outline-none`}
+              onClick={handleToggle}
+            >
+              {isBuyerMode ? "Buyer" : "Seller"}
+            </button>
           </div>
         </div>
       </nav>

@@ -147,7 +147,7 @@ const TicketDetails = () => {
           {...register("ticketQueue")}
         />
         <span className="mt-2 flex flex-row">
-          <ExclaimationSvg/>
+          <ExclaimationSvg />
           <span className="text-xs text-gray-400 mx-1">
             If there is no sequence number, leave it blank.
           </span>
