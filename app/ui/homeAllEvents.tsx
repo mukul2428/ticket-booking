@@ -37,7 +37,7 @@ const HomeAllEvents = () => {
   };
   return (
     <>
-      <div className="">
+      <div style={{marginTop: "-112px"}}>
         <Image
           src="/CrowedImage.png"
           className="w-screen h-screen"
@@ -108,7 +108,7 @@ const HomeAllEvents = () => {
         {displayEvents[0].eventsData.eventName ? (
           displayEvents.map((event) => (
             <span key={event.id}>
-              <Cards items={event.eventsData} />
+              <Cards items={event} />
             </span>
           ))
         ) : (

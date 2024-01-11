@@ -4,11 +4,12 @@ import Link from "next/link";
 import _debounce from "lodash/debounce";
 import Login from "./login";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isLoginVisible, setLoginVisible] = useState(false);
   const links = [
-    { id: 1, name: "LogIn", href: "" },
+    { id: 1, name: "Login", href: "" },
     {
       id: 2,
       name: "Help",
@@ -40,16 +41,17 @@ const Header = () => {
     };
   }, [isAtTop]);
 
+  const pathname = usePathname();
   return (
     <>
-      <nav className={`sticky top-0 z-50 ${isAtTop ? "bg-black" : "bg-white"}`}>
+      <nav className={`sticky top-0 z-50 ${isAtTop && pathname === '/' ? "bg-tranparent" : "bg-white"}`}>
         <div className="flex items-center justify-between p-4">
           <Link
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <Image
-              className="h-8 w-auto"
+              className="h-20 w-auto"
               src="/siteLogo.png"
               alt="Logo"
               width="0"
@@ -58,7 +60,7 @@ const Header = () => {
             />
             <span
               className={`self-center text-2xl font-semibold whitespace-nowrap ${
-                isAtTop ? "text-white" : "text-black"
+                isAtTop && pathname === '/' ? "text-white" : "text-black"
               }`}
             >
               E V E N T
@@ -70,7 +72,7 @@ const Header = () => {
                 <Link key={link.name} href={link.href}>
                   <li
                     className={`block bg-transparent py-2 px-2 rounded ${
-                      isAtTop ? "text-white" : "text-black"
+                      isAtTop && pathname === '/' ? "text-white" : "text-black"
                     }`}
                   >
                     {link.name}
@@ -85,11 +87,11 @@ const Header = () => {
                 <button
                   type="button"
                   onClick={() =>
-                    link.name === "LogIn" && setLoginVisible(!isLoginVisible)
+                    link.name === "Login" && setLoginVisible(!isLoginVisible)
                   }
                   className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
-                    isAtTop
-                      ? "text-white bg-black hover:bg-white hover:text-black border border-white "
+                    isAtTop && pathname === '/'
+                      ? "text-white bg-transparent hover:bg-white hover:text-black border border-white "
                       : "text-black bg-white hover:bg-black hover:text-white border border-black"
                   }`}
                 >
