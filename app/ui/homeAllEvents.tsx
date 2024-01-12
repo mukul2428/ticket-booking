@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TeamContext } from "../hooks/context";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
@@ -9,6 +9,8 @@ import Cards from "../ui/cards";
 import Teams from "../ui/teams";
 
 const HomeAllEvents = () => {
+  const userLoginData = useSelector((state: RootState) => state.login);
+  const userSignUpData = useSelector((state: RootState) => state.signup);
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardsPerPage = 3;
   const allEvents = useSelector((state: RootState) => state.allEvents);
@@ -35,9 +37,15 @@ const HomeAllEvents = () => {
       (currentIndex - cardsPerPage + lastIndex + 1) % (lastIndex + 1);
     setCurrentIndex(prevIndex);
   };
+
+  useEffect(() => {
+    console.log(userLoginData, "userLoginData");
+    console.log(userSignUpData, "userSignUpData");
+  }, [userSignUpData, userLoginData]);
+
   return (
     <>
-      <div style={{marginTop: "-112px"}}>
+      <div style={{ marginTop: "-112px" }}>
         <Image
           src="/CrowedImage.png"
           className="w-screen h-screen"

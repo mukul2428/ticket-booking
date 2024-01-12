@@ -2,18 +2,17 @@
 import { loginInputs } from "../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../state/store";
 import { login } from "../state/userData/loginDataSlice";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { LocationSvg } from "./svgIcons";
+import { signUp } from "../state/userData/signUpDataSlice";
 
 interface LoginProps {
   setLoginVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  isLoginVisible: boolean;
 }
 
-const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
-  const userData = useSelector((state: RootState) => state.login);
+const Login: React.FC<LoginProps> = ({ setLoginVisible }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -28,10 +27,23 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
         email: data.email,
         password: data.password,
         rememberMe: data.rememberMe,
+        userType: "Seller",
       })
     );
-    setLoginVisible(!isLoginVisible);
-    console.log(userData);
+    dispatch(
+      signUp({
+        fname: "",
+        sname: "",
+        email: data.email,
+        password: data.password,
+        phoneNo: 0,
+        becomeMember: false,
+        sendMail: false,
+        shareData: false,
+        userType: "Seller",
+      })
+    );
+    setLoginVisible(false);
   };
 
   const router = useRouter();
@@ -43,6 +55,12 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
         style={{ zIndex: 9999 }}
       >
         <div className="w-[400px]">
+          <span
+            onClick={() => setLoginVisible(false)}
+            className="float-right mt-[-20px] mr-[-20px] bg-white cursor-pointer p-2 rounded-md"
+          >
+            <LocationSvg />
+          </span>
           <div className="bg-white rounded-md p-6">
             <h1 className="text-lg font-bold">Log In</h1>
             <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
@@ -82,10 +100,10 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible, isLoginVisible }) => {
                 </label>
                 <p
                   onClick={() => {
-                    setLoginVisible(!isLoginVisible);
-                    router.push("/sign-up", { scroll: false });
+                    setLoginVisible(false);
+                    router.push("/sign-up");
                   }}
-                  className="mt-1 mx-10 text-orange-600 underline text-xs cursor-pointer"
+                  className="mt-1 ml-3 text-orange-600 underline text-xs cursor-pointer"
                 >
                   New User?
                 </p>

@@ -4,7 +4,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 const initialState: loginInputs = {
   email: "",
   password: "",
-  rememberMe: ""
+  rememberMe: "",
+  userType: "Seller",
 };
 
 const userSlice = createSlice({
@@ -15,10 +16,13 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.password = action.payload.password;
       state.rememberMe = action.payload.rememberMe;
+      state.userType = action.payload.userType;
     },
     logout: (state) => {
       state.email = "";
       state.password = "";
+      state.rememberMe = "";
+      state.userType = "Seller";
     },
   },
 });

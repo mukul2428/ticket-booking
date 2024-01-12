@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { signUpInputs } from "../types";
 import { useDispatch } from "react-redux";
 import { signUp } from "../state/userData/signUpDataSlice";
+import { login } from "../state/userData/loginDataSlice";
 
 const SignUp = () => {
   const {
@@ -30,9 +31,18 @@ const SignUp = () => {
         becomeMember: data.becomeMember,
         sendMail: data.sendMail,
         shareData: data.shareData,
+        userType: "Seller",
       })
     );
-    router.push("/", { scroll: false });
+    dispatch(
+      login({
+        email: data.email,
+        password: data.password,
+        rememberMe: "",
+        userType: "Seller",
+      })
+    );
+    router.push("/");
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

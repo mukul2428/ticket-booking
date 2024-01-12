@@ -5,15 +5,25 @@ import _debounce from "lodash/debounce";
 import Login from "./login";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "../state/userData/loginDataSlice";
+import { RootState } from "../state/store";
+import { clearSignUp, signUp } from "../state/userData/signUpDataSlice";
 
 const Header = () => {
   const [isLoginVisible, setLoginVisible] = useState(false);
-  const [isBuyerMode, setIsBuyerMode] = useState(true);
-  const handleToggle = () => {
-    setIsBuyerMode(!isBuyerMode);
-  };
-  const links = [
-    { id: 1, name: "Login", href: "", disabled: false },
+
+  const dispatch = useDispatch();
+
+  const userLoginData = useSelector((state: RootState) => state.login);
+  const userSignUpData = useSelector((state: RootState) => state.signup);
+  let links = [
+    {
+      id: 1,
+      name: userLoginData.email || userSignUpData.email ? "Logout" : "Login",
+      href: "",
+      disabled: false,
+    },
     {
       id: 2,
       name: "Help",
@@ -24,7 +34,10 @@ const Header = () => {
       id: 3,
       name: "Sell Tickets",
       href: "/sell-tickets",
-      disabled: false,
+      disabled:
+        userLoginData.userType === "Buyer" || userSignUpData.userType === "Buyer"
+          ? true
+          : false,
     },
   ];
   const eventNames = [
@@ -33,6 +46,12 @@ const Header = () => {
     { name: "Concerts", href: "" },
     { name: "Events", href: "" },
   ];
+
+  const handleToggle = () => {
+    const userType = userLoginData.userType === "Seller" ? "Buyer" : "Seller";
+    dispatch(login({ ...userLoginData, userType: userType }));
+    dispatch(signUp({ ...userSignUpData, userType: userType }));
+  };
 
   const [isAtTop, setIsAtTop] = useState(true);
 
@@ -52,6 +71,16 @@ const Header = () => {
   }, [isAtTop]);
 
   const pathname = usePathname();
+
+  const handleLogin = (linkName: string) => {
+    if (linkName === "Login") {
+      setLoginVisible(!isLoginVisible);
+    } else if (linkName === "Logout") {
+      dispatch(logout());
+      dispatch(clearSignUp());
+    }
+  };
+
   return (
     <>
       <nav
@@ -96,41 +125,39 @@ const Header = () => {
             </ul>
           </div>
           <div className="flex gap-5">
-            {links.map((link) => (
-              <Link key={link.id} href={link.href}>
-                <button
-                  disabled={link.disabled}
-                  type="button"
-                  onClick={() =>
-                    link.name === "Login" && setLoginVisible(!isLoginVisible)
-                  }
-                  className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
-                    isAtTop && pathname === "/"
-                      ? "text-white bg-transparent hover:bg-white hover:text-black border border-white "
-                      : "text-black bg-white hover:bg-black hover:text-white border border-black"
-                  }`}
-                >
-                  {link.name}
-                </button>
-              </Link>
-            ))}
+            {links.map((link) =>
+              !link.disabled ? (
+                <Link key={link.id} href={link.href}>
+                  <button
+                    disabled={link.disabled}
+                    type="button"
+                    onClick={() => handleLogin(link.name)}
+                    className={`font-medium rounded-lg text-sm px-4 py-2 text-center ${
+                      isAtTop && pathname === "/"
+                        ? "text-white bg-transparent hover:bg-white hover:text-black border border-white "
+                        : "text-black bg-white hover:bg-black hover:text-white border border-black"
+                    }`}
+                  >
+                    {link.name}
+                  </button>
+                </Link>
+              ) : null
+            )}
             <button
               className={`w-24 h-10 flex items-center justify-center ${
-                isBuyerMode ? "bg-orange-500" : "bg-green-500"
+                userLoginData.userType === "Buyer" ||
+                userSignUpData.userType === "Buyer"
+                  ? "bg-orange-500"
+                  : "bg-green-500"
               } text-white rounded-lg focus:outline-none`}
               onClick={handleToggle}
             >
-              {isBuyerMode ? "Buyer" : "Seller"}
+              {userLoginData.userType}
             </button>
           </div>
         </div>
       </nav>
-      {isLoginVisible && (
-        <Login
-          setLoginVisible={setLoginVisible}
-          isLoginVisible={isLoginVisible}
-        />
-      )}
+      {isLoginVisible && <Login setLoginVisible={setLoginVisible} />}
     </>
   );
 };

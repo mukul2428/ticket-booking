@@ -10,6 +10,7 @@ const initialState: signUpInputs = {
   becomeMember: false,
   sendMail: false,
   shareData: false,
+  userType: "Seller",
 };
 
 const userSlice = createSlice({
@@ -25,11 +26,23 @@ const userSlice = createSlice({
       state.becomeMember = action.payload.becomeMember;
       state.sendMail = action.payload.sendMail;
       state.shareData = action.payload.shareData;
+      state.userType = action.payload.userType;
     },
+    clearSignUp: (state) => {
+      state.fname = "";
+      state.sname = "";
+      state.email = "";
+      state.password = "";
+      state.phoneNo = 0;
+      state.becomeMember = false;
+      state.sendMail = false;
+      state.shareData = false;
+      state.userType = "Seller";
+    }
   },
 });
 
 //we can now directly access the actions
-export const { signUp } = userSlice.actions;
+export const { signUp, clearSignUp } = userSlice.actions;
 
 export default userSlice.reducer;

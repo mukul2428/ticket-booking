@@ -4,6 +4,7 @@ export type loginInputs = {
   email: string;
   password: string;
   rememberMe: string;
+  userType: string;
 };
 export type signUpInputs = {
   fname: string;
@@ -14,6 +15,7 @@ export type signUpInputs = {
   becomeMember: boolean;
   sendMail: boolean;
   shareData: boolean;
+  userType: string;
 };
 export type priceInputs = {
   price: string;
