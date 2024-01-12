@@ -24,7 +24,7 @@ const Header = () => {
       id: 3,
       name: "Sell Tickets",
       href: "/sell-tickets",
-      disabled: isBuyerMode,
+      disabled: false,
     },
   ];
   const eventNames = [
