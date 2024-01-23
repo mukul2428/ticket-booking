@@ -1,12 +1,25 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { DaySvg, EventCardLine, LocationSvg, TimeSvg } from "./svgIcons";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 const Cards: any = ({ items }: any) => {
+  const userLoginData = useSelector((state: RootState) => state.login);
+  const userSignUpData = useSelector((state: RootState) => state.signup);
+
   if (items.eventsData === undefined) return;
   return (
     <>
-      <Link href={"/sell-tickets/ticket-details"}>
+      <Link
+        href={
+          userLoginData.userType === "Seller"
+            ? "/seller/sell-tickets/ticket-details"
+            : "/buyer/buy-tickets"
+        }
+      >
         <div className="relative max-w-sm shadow-custom rounded-lg shadow ">
           <Image
             className="rounded-t-lg object-cover h-48 w-96"
@@ -41,13 +54,17 @@ const Cards: any = ({ items }: any) => {
                     <span>{items.eventsData.eventDate}</span>
                   </div>
                   <div>
-                    <span className="text-orange-600">+{items.ticketData.noOfTickets} tickets left</span>
+                    <span className="text-orange-600">
+                      +{items.ticketData.noOfTickets} tickets left
+                    </span>
                   </div>
                 </div>
-                <EventCardLine/>
+                <EventCardLine />
                 <div>
                   <span>Lowest Price</span>
-                  <div className="text-orange-600 font-bold text-2xl">${items.salePrice.price} USD</div>
+                  <div className="text-orange-600 font-bold text-2xl">
+                    ${items.salePrice.price} USD
+                  </div>
                 </div>
               </div>
             </div>

@@ -33,7 +33,7 @@ const Header = () => {
     {
       id: 3,
       name: "Sell Tickets",
-      href: "/sell-tickets",
+      href: "/seller/sell-tickets",
       disabled:
         userLoginData.userType === "Buyer" || userSignUpData.userType === "Buyer"
           ? true

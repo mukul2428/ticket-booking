@@ -32,7 +32,7 @@ const TicketDetails = () => {
         readyTicket: data.readyTicket,
       })
     );
-    router.push("/sell-tickets/ticket-details/sale-price");
+    router.push("/seller/sell-tickets/ticket-details/sale-price");
   };
   const requirements = [
     {

@@ -1,6 +1,8 @@
 "use client";
 
-import BuyticketCard from "../ui/buyticketCard";
+import BuyticketCard from "@/app/ui/buy-tickets/buyticketCard";
+
+
 
 const BuyTicket = () => {
   return (

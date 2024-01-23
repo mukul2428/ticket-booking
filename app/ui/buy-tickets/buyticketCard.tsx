@@ -5,7 +5,7 @@ import {
   ComfortSeatSVG,
   ETicketSVG,
   FreeFoodSVG,
-} from "./svgIcons";
+} from "../svgIcons";
 
 const BuyticketCard = () => {
   return (

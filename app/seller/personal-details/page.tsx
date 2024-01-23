@@ -34,7 +34,7 @@ const PersonalDetails = () => {
       })
     );
     router.push(
-      "/personal-details/payment-details"
+      "/seller/personal-details/payment-details"
     );
   };
   return (

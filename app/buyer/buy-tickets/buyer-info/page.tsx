@@ -1,5 +1,7 @@
 "use client";
-import DisplayTicket from "@/app/display-tickets/page";
+
+import DisplayTicket from "@/app/seller/display-tickets/page";
+
 
 const BuyerInfo = () => {
   return (

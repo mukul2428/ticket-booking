@@ -19,7 +19,7 @@ const SalePrice = () => {
 
   const onSubmit: SubmitHandler<priceInputs> = (data) => {
     dispatch(setPrice({ price: data.price }));
-    router.push("/personal-details");
+    router.push("/seller/personal-details");
   };
   return (
     <>

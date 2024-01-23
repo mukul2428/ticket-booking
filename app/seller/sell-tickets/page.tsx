@@ -43,7 +43,7 @@ const SellTickets = () => {
         eventCategory: data.eventCategory,
       })
     );
-    router.push("/sell-tickets/ticket-details");
+    router.push("/seller/sell-tickets/ticket-details");
   };
 
   return (

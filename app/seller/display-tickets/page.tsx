@@ -9,7 +9,7 @@ import Image from "next/image";
 const DisplayTicket = () => {
   const router = useRouter();
   const handleMyAds = () => {
-    router.push("/my-ads");
+    router.push("/seller/my-ads");
   };
   const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
   return (

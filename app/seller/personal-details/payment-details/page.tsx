@@ -37,7 +37,7 @@ const PaymentDetails = () => {
     );
     dispatch(setAllEventData({...sellTicketsData, id: uuidv4()}));
     router.push(
-      "/display-tickets"
+      "/seller/display-tickets"
     );
   };
   return (
