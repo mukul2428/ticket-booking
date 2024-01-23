@@ -190,7 +190,7 @@ export const DaySvg = () => (
   </svg>
 );
 
-export const EventCardLine = () => (
+export const EventCardLineSvg = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="2"
@@ -198,16 +198,11 @@ export const EventCardLine = () => (
     viewBox="0 0 2 92"
     fill="none"
   >
-    <path
-      d="M1 1V91"
-      stroke="#DFE1E5"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
+    <path d="M1 1V91" stroke="#DFE1E5" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 
-export const ETicketSVG = () => (
+export const ETicketSvg = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"
@@ -234,7 +229,7 @@ export const ETicketSVG = () => (
   </svg>
 );
 
-export const FreeFoodSVG = () => (
+export const FreeFoodSvg = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="19"
@@ -265,7 +260,7 @@ export const FreeFoodSVG = () => (
   </svg>
 );
 
-export const ComfortSeatSVG = () => (
+export const ComfortSeatSvg = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -280,7 +275,7 @@ export const ComfortSeatSVG = () => (
   </svg>
 );
 
-export const BackstagePassSVG = () => (
+export const BackstagePassSvg = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18"

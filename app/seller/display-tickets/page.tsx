@@ -12,9 +12,12 @@ const DisplayTicket = () => {
     router.push("/seller/my-ads");
   };
   const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
+  const eventData = useSelector(
+    (state: RootState) => state.sellTickets.eventsData
+  );
   return (
     <>
-      <DisplayEventImage />
+      <DisplayEventImage eventData={eventData} />
       <div className="flex flex-row justify-center items-center m-10">
         <div className="flex flex-col">
           <div className="flex flex-row">

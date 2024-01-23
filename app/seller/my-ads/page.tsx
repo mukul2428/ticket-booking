@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import DisplayEventImage from "@/app/ui/displayEventImage";
 import Image from "next/image";
 const Myads = () => {
+  const eventData = useSelector(
+    (state: RootState) => state.sellTickets.eventsData
+  );
   const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
   const eventTicketsData = useSelector((state: RootState) => state.allEvents);
   console.log(eventTicketsData);
   return (
     <>
-      <DisplayEventImage />
+      <DisplayEventImage eventData={eventData} />
       <div className="flex flex-col p-10 m-10 w-3/5">
         <div className="flex flex-row">
           <span className="text-3xl font-bold">My</span>

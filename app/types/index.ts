@@ -17,11 +17,17 @@ export type signUpInputs = {
   shareData: boolean;
   userType: string;
 };
+export type participantsInputs = {
+  fname: string;
+  sname: string;
+  phoneNo: number;
+  tdinNo: number;
+};
 export type priceInputs = {
   price: string;
 };
 export type eventDataInputs = {
-  eventImage: string;
+  eventImage: string | null;
   eventName: string;
   eventLocation: string;
   eventDate: string;

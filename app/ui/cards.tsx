@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { DaySvg, EventCardLine, LocationSvg, TimeSvg } from "./svgIcons";
+import { DaySvg, EventCardLineSvg, LocationSvg, TimeSvg } from "./svgIcons";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
 const Cards: any = ({ items }: any) => {
@@ -59,7 +59,7 @@ const Cards: any = ({ items }: any) => {
                     </span>
                   </div>
                 </div>
-                <EventCardLine />
+                <EventCardLineSvg />
                 <div>
                   <span>Lowest Price</span>
                   <div className="text-orange-600 font-bold text-2xl">

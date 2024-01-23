@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/state/store";
 import Image from "next/image";
-const DisplayEventImage = () => {
-  const eventData = useSelector(
-    (state: RootState) => state.sellTickets.eventsData
-  );
+import { eventDataInputs } from "../types";
+
+type eventDataTypes = {
+  eventData: eventDataInputs;
+};
+
+const DisplayEventImage: React.FC<eventDataTypes> = ({ eventData }) => {
+  if (!eventData.eventImage) {
+    // Handle the case when eventImage is null
+    return <div>No Image</div>;
+  }
   return (
     <>
       <div className="flex items-center justify-center w-screen h-72 relative">

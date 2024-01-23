@@ -1,4 +1,5 @@
 "use client";
+import { RootState } from "@/app/state/store";
 import { setTicketData } from "@/app/state/userData/sellTicketsSlice";
 import { ticketDataInputs } from "@/app/types";
 import DisplayEventImage from "@/app/ui/displayEventImage";
@@ -7,7 +8,7 @@ import TickRectangle from "@/app/ui/ticket-details/ticketRectangle";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const TicketDetails = () => {
   const router = useRouter();
@@ -17,6 +18,9 @@ const TicketDetails = () => {
     watch,
     formState: { errors },
   } = useForm<ticketDataInputs>();
+  const eventData = useSelector(
+    (state: RootState) => state.sellTickets.eventsData
+  );
 
   const dispatch = useDispatch();
 
@@ -65,7 +69,7 @@ const TicketDetails = () => {
 
   return (
     <>
-      <DisplayEventImage />
+      <DisplayEventImage eventData={eventData} />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col p-10 m-10 w-3/5"

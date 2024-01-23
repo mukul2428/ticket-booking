@@ -19,6 +19,9 @@ const PaymentDetails = () => {
     formState: { errors },
   } = useForm<bankInfoInputs>();
   const sellTicketsData = useSelector((state: RootState) => state.sellTickets);
+  const eventData = useSelector(
+    (state: RootState) => state.sellTickets.eventsData
+  );
 
   const onSubmit: SubmitHandler<bankInfoInputs> = (data) => {
     dispatch(
@@ -35,14 +38,12 @@ const PaymentDetails = () => {
         myApporval: data.myApporval,
       })
     );
-    dispatch(setAllEventData({...sellTicketsData, id: uuidv4()}));
-    router.push(
-      "/seller/display-tickets"
-    );
+    dispatch(setAllEventData({ ...sellTicketsData, id: uuidv4() }));
+    router.push("/seller/display-tickets");
   };
   return (
     <>
-      <DisplayEventImage />
+      <DisplayEventImage eventData={eventData} />
       <form
         className="flex flex-col p-10 m-10 w-3/5"
         onSubmit={handleSubmit(onSubmit)}

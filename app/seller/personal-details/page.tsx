@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
 import { personalInfoInputs } from "@/app/types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPersonalInfo } from "@/app/state/userData/sellTicketsSlice";
 import { useForm } from "react-hook-form";
+import { RootState } from "@/app/state/store";
 const PersonalDetails = () => {
   const {
     register,
@@ -20,6 +21,9 @@ const PersonalDetails = () => {
   const handleAddress = () => {
     setIsAddressFields(!isAddressFields);
   };
+  const eventData = useSelector(
+    (state: RootState) => state.sellTickets.eventsData
+  );
   const onSubmit: SubmitHandler<personalInfoInputs> = (data) => {
     dispatch(
       setPersonalInfo({
@@ -39,7 +43,7 @@ const PersonalDetails = () => {
   };
   return (
     <>
-      <DisplayEventImage />
+      <DisplayEventImage eventData={eventData} />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col p-10 m-10 w-3/5"

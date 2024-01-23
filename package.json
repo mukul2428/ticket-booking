@@ -10,6 +10,7 @@
     "commit": "cz"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.21.0",
     "@reduxjs/toolkit": "^2.0.1",
     "clsx": "^2.1.0",
     "lodash.debounce": "^4.0.8",

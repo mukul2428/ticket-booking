@@ -4,8 +4,9 @@ import { setPrice } from "@/app/state/userData/sellTicketsSlice";
 import { priceInputs } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DisplayEventImage from "@/app/ui/displayEventImage";
+import { RootState } from "@/app/state/store";
 
 const SalePrice = () => {
   const router = useRouter();
@@ -16,6 +17,9 @@ const SalePrice = () => {
     watch,
     formState: { errors },
   } = useForm<priceInputs>();
+  const eventData = useSelector(
+    (state: RootState) => state.sellTickets.eventsData
+  );
 
   const onSubmit: SubmitHandler<priceInputs> = (data) => {
     dispatch(setPrice({ price: data.price }));
@@ -23,7 +27,7 @@ const SalePrice = () => {
   };
   return (
     <>
-      <DisplayEventImage />
+      <DisplayEventImage eventData={eventData} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col p-10 m-10 w-3/5">
           <div className="flex flex-row">

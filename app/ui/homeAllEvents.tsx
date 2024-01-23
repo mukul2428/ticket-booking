@@ -41,7 +41,8 @@ const HomeAllEvents = () => {
   useEffect(() => {
     console.log(userLoginData, "userLoginData");
     console.log(userSignUpData, "userSignUpData");
-  }, [userSignUpData, userLoginData]);
+    console.log(allEvents);
+  }, [userSignUpData, userLoginData, allEvents]);
 
   return (
     <>

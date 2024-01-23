@@ -1,5 +1,9 @@
 "use client";
+import { participantsInputs } from "@/app/types";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const RequiredTickets = () => {
   const [selectedCircle, setSelectedCircle] = useState<number | null>(null);
@@ -8,8 +12,24 @@ const RequiredTickets = () => {
     setSelectedCircle(circleNumber);
   };
   const circles = Array.from({ length: 10 }, (_, index) => index + 1);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<participantsInputs>();
+
+  const dispatch = useDispatch();
+
+  const router = useRouter();
+  const onSubmit: SubmitHandler<participantsInputs> = (data) => {
+    router.push("/buyer/buyer-info/required-tickets/buyer-payment");
+  };
   return (
-    <form className="flex flex-col p-10 m-10 w-3/5">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col p-10 m-10 w-3/5"
+    >
       <div className="flex flex-row">
         <span className="text-3xl font-bold">Required</span>
         <span className="text-3xl font-bold text-orange-600 mx-2">Tickets</span>
@@ -42,15 +62,13 @@ const RequiredTickets = () => {
             type="text"
             className="common-input"
             placeholder="Your Name"
-            //   {...register("firstName", {
-            //     required: true,
-            //   })}
+            {...register("fname", {
+              required: true,
+            })}
           />
-          {/* {errors.firstName && (
-              <span className="text-xs text-red-500">
-                First Name is required
-              </span>
-            )} */}
+          {errors.fname && (
+            <span className="text-xs text-red-500">First Name is required</span>
+          )}
         </div>
         <div className="ml-4 flex flex-col">
           <label className="font-semibold">Your Surname</label>
@@ -58,15 +76,13 @@ const RequiredTickets = () => {
             type="text"
             className="common-input"
             placeholder="Your Surname"
-            //   {...register("lastName", {
-            //     required: true,
-            //   })}
+            {...register("sname", {
+              required: true,
+            })}
           />
-          {/* {errors.lastName && (
-              <span className="text-xs text-red-500">
-                Last Name is required
-              </span>
-            )} */}
+          {errors.sname && (
+            <span className="text-xs text-red-500">Last Name is required</span>
+          )}
         </div>
       </div>
       <div className="mt-2 flex flex-row">
@@ -76,15 +92,15 @@ const RequiredTickets = () => {
             type="number"
             className="common-input"
             placeholder="+91"
-            //   {...register("phoneNumber", {
-            //     required: true,
-            //   })}
+            {...register("phoneNo", {
+              required: true,
+            })}
           />
-          {/* {errors.phoneNumber && (
-              <span className="text-xs text-red-500">
-                Phone Number is required
-              </span>
-            )} */}
+          {errors.phoneNo && (
+            <span className="text-xs text-red-500">
+              Phone Number is required
+            </span>
+          )}
         </div>
         <div className="ml-4 flex flex-col">
           <label className="font-semibold">
@@ -94,15 +110,11 @@ const RequiredTickets = () => {
             type="text"
             className="common-input"
             placeholder="TR ID Number / Passport Number"
-            //   {...register("email", {
-            //     required: true,
-            //   })}
+            {...register("tdinNo")}
           />
-          {/* {errors.email && (
-              <span className="text-xs text-red-500">
-                Email is required
-              </span>
-            )} */}
+          {/* {errors.tdinNo && (
+            <span className="text-xs text-red-500">Email is required</span>
+          )} */}
         </div>
       </div>
       <button
