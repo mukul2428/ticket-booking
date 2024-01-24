@@ -56,6 +56,7 @@ const Header = () => {
   const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
+    console.log("header");
     const handleScroll = _debounce(() => {
       const scrolled = window.scrollY;
       // Set the condition based on your scroll position
