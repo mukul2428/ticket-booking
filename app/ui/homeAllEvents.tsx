@@ -17,7 +17,7 @@ const HomeAllEvents = () => {
   const teamsData = [
     {
       id: 0,
-      imageType: "football.jpg",
+      imageType: "/football.jpg",
       teamName: "CSK",
     },
   ];
