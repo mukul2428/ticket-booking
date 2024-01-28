@@ -35,7 +35,8 @@ const Header = () => {
       name: "Sell Tickets",
       href: "/seller/sell-tickets",
       disabled:
-        userLoginData.userType === "Buyer" || userSignUpData.userType === "Buyer"
+        userLoginData.userType === "Buyer" ||
+        userSignUpData.userType === "Buyer"
           ? true
           : false,
     },
@@ -89,11 +90,15 @@ const Header = () => {
           isAtTop && pathname === "/" ? "bg-tranparent" : "bg-white"
         }`}
       >
-        <div className="flex items-center justify-between p-4">
-          <Link
-            href="/"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
+        <div className="flex items-center justify-between p-4 mx-10">
+          <div
+            className="flex items-center space-x-3"
           >
+            <div className="lg:hidden block cursor-pointer">
+              <div className="h-1 w-6 bg-white"></div>
+              <div className="h-1 w-6 bg-white my-1"></div>
+              <div className="h-1 w-6 bg-white"></div>
+            </div>
             <Image
               className="h-20 w-auto"
               src="/siteLogo.png"
@@ -109,8 +114,8 @@ const Header = () => {
             >
               E V E N T
             </span>
-          </Link>
-          <div className="items-center flex" id="navbar-cta">
+          </div>
+          <div className="lg:flex hidden items-center" id="navbar-cta">
             <ul className="flex gap-4 flex-row font-medium p-4 ">
               {eventNames.map((link) => (
                 <Link key={link.name} href={link.href}>
@@ -144,7 +149,7 @@ const Header = () => {
                 </Link>
               ) : null
             )}
-            <button
+            {/* <button
               className={`w-24 h-10 flex items-center justify-center ${
                 userLoginData.userType === "Buyer" ||
                 userSignUpData.userType === "Buyer"
@@ -154,7 +159,7 @@ const Header = () => {
               onClick={handleToggle}
             >
               {userLoginData.userType}
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>
