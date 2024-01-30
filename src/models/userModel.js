@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  username: {
+  fname: {
     type: String,
-    required: [true, "Please provide a username"],
-    unique: true,
+    required: [true, "Please provide a first name"],
+  },
+  sname: {
+    type: String,
+    required: [true, "Please provide a last name"],
   },
   email: {
     type: String,
@@ -14,6 +17,22 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Please provide a password"],
+  },
+  phoneNo: {
+    type: Number,
+    required: [true, "Please provide a phone number"],
+  },
+  becomeMember: {
+    type: Boolean,
+    default: false,
+  },
+  sendMail: {
+    type: Boolean,
+    default: false,
+  },
+  shareData: {
+    type: Boolean,
+    default: false,
   },
   isVerified: {
     type: Boolean,

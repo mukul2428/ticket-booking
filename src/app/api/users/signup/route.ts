@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
@@ -11,7 +10,17 @@ export async function POST(request: NextRequest) {
     const reqBody = await request.json();
     console.log(reqBody);
 
-    const { username, email, password } = reqBody;
+    const {
+      fname,
+      sname,
+      email,
+      password,
+      phoneNo,
+      becomeMember,
+      sendMail,
+      shareData,
+      userType,
+    } = reqBody;
 
     //check if user already exists
     const user = await User.findOne({ email });
@@ -26,9 +35,15 @@ export async function POST(request: NextRequest) {
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     const newUser = new User({
-      username,
+      fname,
+      sname,
+      phoneNo,
       email,
       password: hashedPassword,
+      becomeMember,
+      sendMail,
+      shareData,
+      userType,
     });
 
     const savedUser = await newUser.save();
@@ -37,7 +52,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: "User created successfully",
       success: true,
-      savedUser
+      savedUser,
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

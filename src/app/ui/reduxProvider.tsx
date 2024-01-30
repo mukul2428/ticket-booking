@@ -1,6 +1,6 @@
 "use client";
 
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { store } from "../state/store";
 import { PersistGate } from "redux-persist/integration/react";
