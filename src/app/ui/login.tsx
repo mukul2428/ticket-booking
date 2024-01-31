@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { LocationSvg } from "./svgIcons";
 import { signUp } from "../state/userData/signUpDataSlice";
+import axios from "axios";
 
 interface LoginProps {
   setLoginVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,29 +22,37 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible }) => {
     formState: { errors },
   } = useForm<loginInputs>();
 
-  const onSubmit: SubmitHandler<loginInputs> = (data) => {
-    dispatch(
-      login({
-        email: data.email,
-        password: data.password,
-        rememberMe: data.rememberMe,
-        userType: "Seller",
-      })
-    );
-    dispatch(
-      signUp({
-        fname: "",
-        sname: "",
-        email: data.email,
-        password: data.password,
-        phoneNo: 0,
-        becomeMember: false,
-        sendMail: false,
-        shareData: false,
-        userType: "Seller",
-      })
-    );
-    setLoginVisible(false);
+  const onSubmit: SubmitHandler<loginInputs> = async (data) => {
+    try {
+      dispatch(
+        login({
+          email: data.email,
+          password: data.password,
+          rememberMe: data.rememberMe,
+          userType: "Seller",
+        })
+      );
+      dispatch(
+        signUp({
+          fname: "",
+          sname: "",
+          email: data.email,
+          password: data.password,
+          phoneNo: 0,
+          becomeMember: false,
+          sendMail: false,
+          shareData: false,
+          userType: "Seller",
+        })
+      );
+
+      const response = await axios.post("/api/users/login", data);
+      console.log(response);
+      router.push("/");
+      setLoginVisible(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const router = useRouter();
