@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../state/userData/loginDataSlice";
 import { RootState } from "../state/store";
 import { clearSignUp, signUp } from "../state/userData/signUpDataSlice";
+import axios from "axios";
 
 const Header = () => {
   const [isLoginVisible, setLoginVisible] = useState(false);
@@ -74,12 +75,18 @@ const Header = () => {
 
   const pathname = usePathname();
 
-  const handleLogin = (linkName: string) => {
+  const handleLogin = async (linkName: string) => {
     if (linkName === "Login") {
       setLoginVisible(!isLoginVisible);
     } else if (linkName === "Logout") {
-      dispatch(logout());
-      dispatch(clearSignUp());
+      try {
+        const response = await axios.get("/api/users/logout");
+        console.log(response);
+        dispatch(logout());
+        dispatch(clearSignUp());
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -91,9 +98,7 @@ const Header = () => {
         }`}
       >
         <div className="flex items-center justify-between p-4 mx-10">
-          <div
-            className="flex items-center space-x-3"
-          >
+          <div className="flex items-center space-x-3">
             <div className="lg:hidden block cursor-pointer">
               <div className="h-1 w-6 bg-white"></div>
               <div className="h-1 w-6 bg-white my-1"></div>
