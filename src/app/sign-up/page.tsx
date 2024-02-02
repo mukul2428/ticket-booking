@@ -9,6 +9,7 @@ import { signUp } from "../state/userData/signUpDataSlice";
 import { login } from "../state/userData/loginDataSlice";
 import SignUpForm from "@/app/ui/sign-up/signUpForm";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const {
@@ -46,10 +47,12 @@ const SignUp = () => {
         })
       );
       const response = await axios.post("/api/users/signup", data);
-      console.log(response);
+      // console.log(response);
+      toast.success("SignUp Successful! Email Verification Sent, Please Verify your Email");
       router.push("/");
-    } catch (err) {
-      console.log(err);
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.response?.data?.error || "Oops! Something went wrong");
     }
   };
   return (

@@ -4,6 +4,7 @@ import Header from "./ui/header";
 import Footer from "./ui/footer";
 import ReduxProvider from "./ui/reduxProvider";
 import { Metadata } from "next";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <ReduxProvider>
           <Header />
           {children}
+          <Toaster position="top-right"/>
           <Footer />
         </ReduxProvider>
       </body>

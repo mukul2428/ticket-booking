@@ -8,6 +8,7 @@ import Image from "next/image";
 import { LocationSvg } from "./svgIcons";
 import { signUp } from "../state/userData/signUpDataSlice";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 interface LoginProps {
   setLoginVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,11 +48,13 @@ const Login: React.FC<LoginProps> = ({ setLoginVisible }) => {
       );
 
       const response = await axios.post("/api/users/login", data);
-      console.log(response);
+      // console.log(response);
+      toast.success("Login Successful");
       router.push("/");
       setLoginVisible(false);
-    } catch (err) {
-      console.log(err);
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.response?.data?.error || "Oops! Something went wrong");
     }
   };
 
