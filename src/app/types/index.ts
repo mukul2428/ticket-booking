@@ -171,3 +171,6 @@ export type teamsData = {
   imageType: string;
   teamName: string;
 };
+export type loaderTypes = {
+  loader: boolean;
+}
