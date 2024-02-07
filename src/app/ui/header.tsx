@@ -154,7 +154,7 @@ const Header = () => {
                 </Link>
               ) : null
             )}
-            {/* <button
+            <button
               className={`w-24 h-10 flex items-center justify-center ${
                 userLoginData.userType === "Buyer" ||
                 userSignUpData.userType === "Buyer"
@@ -164,7 +164,7 @@ const Header = () => {
               onClick={handleToggle}
             >
               {userLoginData.userType}
-            </button> */}
+            </button>
           </div>
         </div>
       </nav>

@@ -1,5 +1,5 @@
 import React from "react";
-import {useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 interface SignUpFormProps {
   register: ReturnType<typeof useForm>["register"];
@@ -111,6 +111,36 @@ const signUpForm: React.FC<any> = ({ register, errors }) => {
 
           {errors.password && (
             <span className="text-xs text-red-500">Password is required</span>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-6 flex flex-row">
+        <span className="text-3xl font-bold">Set</span>
+        <span className="text-3xl font-bold text-orange-600 mx-2">Type</span>
+      </div>
+      <div className="flex flex-row">
+        <div className="mr-4 flex flex-col">
+          <label className="font-semibold">User Type</label>
+          <div className="flex flex-row">
+            {["Seller", "Buyer"].map((category, index) => (
+              <div className={`border-2 border-orange-600 p-2 my-2 rounded-lg ${index == 0 ? "my-2" : "m-2"}  `} key={category}>
+                <input
+                  className="mx-1 mt-3 accent-orange-600"
+                  type="radio"
+                  id={category}
+                  value={category}
+                  {...register("userType", {
+                    required: true,
+                  })}
+                />
+                <label htmlFor={category}>{category}</label>
+              </div>
+            ))}
+          </div>
+
+          {errors.userType && (
+            <span className="text-xs text-red-500">User Type is required</span>
           )}
         </div>
       </div>
